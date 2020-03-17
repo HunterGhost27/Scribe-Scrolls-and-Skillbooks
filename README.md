@@ -23,19 +23,19 @@ Scrolls aren't as easy to scribe, however, since, for all I know, skill-books ar
 Note: You don't need chicken-claws, nails or large-antlers etc. to scribe a scroll, like you would for crafting them, you just need the Essence. Source Skills require Source-Orbs instead of Essences. Scribing a scroll or skill-book will not consume the original, this mod wouldn't be much of an upgrade otherwise.
 
 ### Recipes
-*Leather Cover + Needle and Thread + Sheet of Paper X 3 = Blank Skillbook.
-(Used for Warfare, Huntsman and Scoundrel Skills; While making this mod I realized that there were no Blank Skillbooks for them, so I had to make a new one. This book also works for higher-tier skills.)
-*Cutting Tool + Feather = Quill
-*Quill + Inkpot = Inkpot-&-Quill (Shocking, I know)
-*Original Scroll + Inkpot-&-Quill + Blank Paper Sheet + Corresponding Essense/SourceOrb = Original Scroll + New Scroll
-*Original Skillbook + Inkpot-&-Quill + Corresponding Blank Skill Book = Original Skillbook + New Skillbook
+*   Leather Cover + Needle and Thread + Sheet of Paper X 3 = Blank Skillbook.
+    (Used for Warfare, Huntsman and Scoundrel Skills; While making this mod I realized that there were no Blank Skillbooks for them, so I had to make a new one. This book also works for higher-tier skills.)
+*   Cutting Tool + Feather = Quill
+*   Quill + Inkpot = Inkpot-&-Quill (Shocking, I know)
+*   Original Scroll + Inkpot-&-Quill + Blank Paper Sheet + Corresponding Essense/SourceOrb = Original Scroll + New Scroll
+*   Original Skillbook + Inkpot-&-Quill + Corresponding Blank Skill Book = Original Skillbook + New Skillbook
 
 ## Compatibility and Known Issues
-*Should be fine to install mid-save (but every modder will recommend a new-game to avoid headaches). Removing a mod mid-save is like removing the steering wheel of your car mid-drive. Sure, everything may seem okay at first glance, but we both know what's coming.
-*While pretty much everything will work fine without Larian's Crafter-Kit Giftbag. I see absolutely no reason not to use it. If you really don't want to use the gift bag, then you will have to find Quills and substitute Leather Cover with Leather Scraps.
-*I don't know why this would be incompatible with anything that doesn't directly change the newly added recipes in this mod, but stranger things have happened in modding-land so let me know if you encounter issues.
-*I have not play-tested every single crafting recipe as there are over 300 and I haven't actually played the game in over a year and a half. I have almost certainly made typos or other totally obvious rookie mistakes which will cause some skill-books and scrolls to return "Invalid Combination". Again, if something doesn't work as it should, let me know.
-*Your friends might hate you if you follow my build advice. [See discussions]
+*   Should be fine to install mid-save (but every modder will recommend a new-game to avoid headaches). Removing a mod mid-save is like removing the steering wheel of your car mid-drive. Sure, everything may seem okay at first glance, but we both know what's coming.
+*   While pretty much everything will work fine without Larian's Crafter-Kit Giftbag. I see absolutely no reason not to use it. If you really don't want to use the gift bag, then you will have to find Quills and substitute Leather Cover with Leather Scraps.
+*   I don't know why this would be incompatible with anything that doesn't directly change the newly added recipes in this mod, but stranger things have happened in modding-land so let me know if you encounter issues.
+*   I have not play-tested every single crafting recipe as there are over 300 and I haven't actually played the game in over a year and a half. I have almost certainly made typos or other totally obvious rookie mistakes which will cause some skill-books and scrolls to return "Invalid Combination". Again, if something doesn't work as it should, let me know.
+*   Your friends might hate you if you follow my build advice. [See discussions]
 
 ## Frequently-Asked-Questions (FAQs)
 *   Q: There are barely any comments here, this Frequently-Asked-Questions section is a lie.

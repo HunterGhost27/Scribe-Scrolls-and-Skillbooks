@@ -7,7 +7,6 @@ if so, then this mod is for you.
 
 # Releases
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2012742114) 
-* [Nexus]()
 
 ## About the Mod
 

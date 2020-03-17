@@ -1,8 +1,6 @@
 Scribe Scrolls and Skillbooks for Divinity: Original Sin 2 - Definitive Edition
 =======
 
-#  Scribe Scrolls and Skillbooks
-
 ## QUICK LOOK
 The mod lets you scribe copies of scrolls and skill-books in your inventory without having to re-craft them from scratch. If you hate scouring the world and waiting hours for traders to restock, to find the right ingredients for those incredibly OP skin-graft or apotheosis scrolls; or perhaps you don't understand why your scholar can't even use a quill to preserve the knowledge from those skill-books by simply writing it all down; or maybe you just love roleplaying a scroll-mage that wants to mass-produce and build a monopoly on selling chicken-claw scrolls.
 if so, then this mod is for you.
@@ -55,6 +53,5 @@ Note: You don't need chicken-claws, nails or large-antlers etc. to scribe a scro
 
 
 ## Thanks and Credits
-Larian for being who they are and for the amazing games they make.
 - [Divinity: Original Sin 2](http://store.steampowered.com/app/435150/Divinity_Original_Sin_2/), a game by [Larian Studios](http://larian.com/)
 

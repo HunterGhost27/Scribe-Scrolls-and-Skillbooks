@@ -40,7 +40,7 @@
                 <node id="ModuleInfo">
                     <attribute id="Author" value="Hunter-Ghost-27" type="30" />
                     <attribute id="CharacterCreationLevelName" value="" type="22" />
-                    <attribute id="Description" value="" type="30" />
+                    <attribute id="Description" value="Scribe Scrolls and Skillbooks provides alternate recipes for skill-book and scroll crafting. The mod lets you scribe copies of scrolls and skill-books in your inventory without having to re-craft them from scratch." type="30" />
                     <attribute id="DescriptionName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="DisplayName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="Folder" value="ScribeSkillbooks_ef0ad26a-20e5-4935-9e7e-baef3dff1664" type="30" />

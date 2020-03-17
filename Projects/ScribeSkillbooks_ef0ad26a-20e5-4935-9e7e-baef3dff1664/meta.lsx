@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="4" build="1" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="Module" value="ef0ad26a-20e5-4935-9e7e-baef3dff1664" type="23" />
+            <attribute id="Name" value="ScribeSkillbooks" type="23" />
+            <attribute id="Type" value="Add-on" type="23" />
+            <attribute id="UUID" value="bdaa61b9-5ce0-4836-b7d6-d1178d003ecf" type="23" />
+        </node>
+    </region>
+</save>

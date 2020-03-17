@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e078e210-b9ba-48e5-afe3-c5eb91ba8545">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="BOOK_Skill_WarriorRogueRanger_Blank_A" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="5a8b370a-caf2-47c7-9fc1-e82480faa97b" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="250" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="InventoryTabs" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="IngredientMid" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="8" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

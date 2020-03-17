@@ -6,7 +6,7 @@ The mod lets you scribe copies of scrolls and skill-books in your inventory with
 if so, then this mod is for you.
 
 # Releases
-* [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2012742114) 
+* **[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2012742114)**
 
 ## About the Mod
 

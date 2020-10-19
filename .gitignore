@@ -116,4 +116,10 @@ ehthumbs.db
 Thumbs.db
 *.lnk
 
+#   #######################
+#       HUNTER-GHOST-27
+#   #######################
 
+*.code-workspace
+.markdownlint.json
+Images/

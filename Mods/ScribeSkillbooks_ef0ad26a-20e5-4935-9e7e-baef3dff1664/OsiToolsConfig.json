@@ -1,0 +1,9 @@
+{
+    "RequiredExtensionVersion": 52,
+    "ModTable": "ScribeSkillbooks",
+    "FeatureFlags": [
+        "OsirisExtensions",
+        "Lua",
+        "Preprocessor"
+    ]
+}

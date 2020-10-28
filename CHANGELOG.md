@@ -2,6 +2,13 @@
 
 ----------
 
+## [1.0.5.0] --- 28th October 2020 --- **_Script-Extender Initialized_**
+
+### NEW
+
+* _Initialized_ script-extender.
+* _Delegated_ `ItemCombo` stat creation to `lua`.
+
 ## [1.0.2.0] --- 10th March 2020 --- *_Restoration Fix_*
 
 ### FIXES

@@ -40,6 +40,10 @@ local function DetermineSkillbook(stat)
         end
     end
 
+    if school == "WarriorRogueRanger" then
+        tier = "Blank_A"
+    end
+
     local skillbook = "BOOK_Skill_" .. school .. "_" .. tier
 
     return skillbook

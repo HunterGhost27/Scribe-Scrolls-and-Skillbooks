@@ -7,6 +7,7 @@
 ### NEW
 
 * _Created_ `S7_Auxiliary.lua`
+* _Created_ Osiris ModVersioning Scripts.
 * Script to create scroll recipes.
 
 ### CHANGED

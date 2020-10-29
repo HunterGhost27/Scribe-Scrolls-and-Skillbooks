@@ -44,7 +44,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="S7_Scribe_BOOK_Leather_Cover_A_LOOT_Needle_Thread_BOOK_Paper_Sheet_A" />
         <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="RecipeCategory" />
         <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
-        <field name="Object 1" type="StringStatObjectFieldDefinition" value="LOOT_Leather_Scraps_A" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="LOOT_Scraps_Leather_A" />
         <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 2" type="StringStatObjectFieldDefinition" value="LOOT_Needle_Thread_A" />

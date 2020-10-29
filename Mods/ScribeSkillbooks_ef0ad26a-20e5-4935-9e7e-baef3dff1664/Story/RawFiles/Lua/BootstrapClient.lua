@@ -108,6 +108,13 @@ local function S7_ScribeScrolls()
             --  ==================
 
             local ingredientTable = {
+                [1] = {
+                    ["IngredientType"] = "Object",
+                    ["ItemRarity"] = "Sentinel",
+                    ["Object"] = result,
+                    ["Transform"] = "None"
+                },
+                [2] = combination.Ingredients[2],
                 [3] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
@@ -121,10 +128,8 @@ local function S7_ScribeScrolls()
                     ["Transform"] = "Transform"
                 }
             }
-            combo.Ingredients[1] = combination.Ingredients[1]
-            combo.Ingredients[2] = combination.Ingredients[2]
-            combo.Ingredients[3] = ingredientTable[3]
-            combo.Ingredients[4] = ingredientTable[4]
+
+            combo.Ingredients = ingredientTable
 
             combo.Name = PREFIX .. "_" .. result
 

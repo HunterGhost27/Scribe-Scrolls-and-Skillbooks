@@ -2,6 +2,17 @@
 
 ----------
 
+## [1.0.6.0] --- 29th October 2020 --- **_Finalized ItemCombo Creation_**
+
+### NEW
+
+* _Created_ `S7_Auxiliary.lua`
+* Script to create scroll recipes.
+
+### CHANGED
+
+* _Moved_ support functions to `S7_Auxiliary.lua`
+
 ## [1.0.5.0] --- 28th October 2020 --- **_Script-Extender Initialized_**
 
 ### NEW

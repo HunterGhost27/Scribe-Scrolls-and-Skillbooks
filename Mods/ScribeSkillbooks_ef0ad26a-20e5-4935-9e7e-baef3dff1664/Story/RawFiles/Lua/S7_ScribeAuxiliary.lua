@@ -7,6 +7,7 @@ PREFIX = "S7_Scribe"
 --  ================
 
 scribeException = {
+    --  list of all stats to ignore
     ["SKILLBOOK_AbilityPoint"] = true,
     ["SKILLBOOK_StatPoint"] = true
 }
@@ -14,9 +15,10 @@ scribeException = {
 --  ==============
 --  COMBO TEMPLATE
 --  ==============
+
 combo = {}
 
-function ReinitCombo()
+function ReinitCombo() --  Resets combo table to initial values
     combo = {
         ["AutoLevel"] = false,
         ["CraftingStation"] = "None",
@@ -27,18 +29,19 @@ function ReinitCombo()
     }
 end
 
-ReinitCombo()
+ReinitCombo() --  Initialize combo
 
 --  ================================
 --  DETERMINE APPROPRIATE SKILLBOOK
 --  ================================
 
-function DetermineSkillbook(stat)
-    local tier = "Blank_Step2_A"
+function DetermineSkillbook(stat) --  Determine the school and tier of blank skillbook required
+    local tier = "Blank_Step2_A" --   Tier 2 by default
 
-    local school = "WarriorRogueRanger"
+    local school = "WarriorRogueRanger" --  Generic blank skillbook by default
 
     local iterSchool = {
+        --  Valid Schools
         "Air",
         "Water",
         "Fire",
@@ -50,21 +53,21 @@ function DetermineSkillbook(stat)
 
     if stat.ObjectCategory ~= nil then
         if string.match(stat.ObjectCategory, "Starter") or string.match(stat.ObjectCategory, "Early") then
-            tier = "Blank_A"
+            tier = "Blank_A" --  If Object Category is Starter or Early then set Tier 1
         end
 
         for _, element in ipairs(iterSchool) do
             if string.match(stat.Name, element) or string.match(stat.ObjectCategory, element) then
-                school = element
+                school = element --   Get School name
             end
         end
     end
 
     if school == "WarriorRogueRanger" then
-        tier = "Blank_A"
+        tier = "Blank_A" -- As there is no tier 2 for Generic Blank Skillbooks reset tier to 1
     end
 
-    return "BOOK_Skill_" .. school .. "_" .. tier
+    return "BOOK_Skill_" .. school .. "_" .. tier --  Return Skillbook
 end
 
 --  ====
@@ -72,5 +75,4 @@ end
 --  ====
 
 LogPrefix = "[S7_Scribe:Lua:BootstrapClient] --- "
-
 totalCount = 0

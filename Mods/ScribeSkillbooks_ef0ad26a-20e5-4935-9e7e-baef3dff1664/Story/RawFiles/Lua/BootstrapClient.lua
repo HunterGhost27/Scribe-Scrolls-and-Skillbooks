@@ -1,3 +1,7 @@
+--  =======
+--  IMPORTS
+--  =======
+
 Ext.Require("S7_ScribeAuxiliary.lua")
 
 --  =======
@@ -8,15 +12,18 @@ local function S7_ScribeSkillbooks()
     Ext.Print(LogPrefix .. "======================================================================")
     Ext.Print(LogPrefix .. "Scribing Skillbook Recipes")
     Ext.Print(LogPrefix .. "======================================================================")
-    local objects = Ext.GetStatEntries("Object")
+    local objects = Ext.GetStatEntries("Object") --  Get All Object Entries.
 
     local count = 0
-    for _, scribable in ipairs(objects) do
-        if scribeException[scribable] ~= true then
-            local stat = Ext.GetStat(scribable) or nil
+    for _, scribable in ipairs(objects) do --  Iterate over object entries.
+        if scribeException[scribable] ~= true then --  If not in exceptions table.
+            local stat = Ext.GetStat(scribable) or nil --  Get Stat Object for entry.
 
-            if stat ~= nil and stat.Using == "_Skillbooks" then
-                ReinitCombo()
+            if stat ~= nil and stat.Using == "_Skillbooks" then --  If stat is a skillbook
+                ReinitCombo() --  Reinitialize combo table
+
+                --  BUILD INGREDIENTS TABLE
+                --  =======================
 
                 local ingredientTable = {
                     [1] = {
@@ -43,6 +50,9 @@ local function S7_ScribeSkillbooks()
 
                 combo.Name = PREFIX .. "_" .. scribable
 
+                --  CREATE RESULTS TABLE
+                --  ====================
+
                 local resultsTable = {
                     ["Name"] = PREFIX .. scribable .. "_1",
                     ["PreviewIcon"] = "",
@@ -59,6 +69,9 @@ local function S7_ScribeSkillbooks()
                     }
                 }
                 combo.Results[1] = resultsTable
+
+                --  UPDATE ITEM COMBO
+                --  =================
 
                 Ext.UpdateItemCombo(combo)
                 count = count + 1
@@ -78,7 +91,7 @@ Ext.RegisterListener("StatsLoaded", S7_ScribeSkillbooks)
 local function S7_ScribeScrolls()
     Ext.Print(LogPrefix .. "Scribing Scroll Recipes")
     Ext.Print("======================================================================")
-    local scrolls = Ext.GetStatEntries("ItemCombination")
+    local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombinations entries.
 
     local count = 0
     for _, scribable in ipairs(scrolls) do
@@ -89,7 +102,10 @@ local function S7_ScribeScrolls()
          then
             local result = combination.Results[1]["Results"][1]["Result"]
 
-            ReinitCombo()
+            ReinitCombo() --  Reinitialize Combo Table.
+
+            --  CREATE INGREDIENTS
+            --  ==================
 
             local ingredientTable = {
                 [3] = {
@@ -112,6 +128,9 @@ local function S7_ScribeScrolls()
 
             combo.Name = PREFIX .. "_" .. result
 
+            --  CREATE RESULTS TABLE
+            --  ====================
+
             local resultsTable = {
                 ["Name"] = PREFIX .. result .. "_1",
                 ["PreviewIcon"] = "",
@@ -129,6 +148,9 @@ local function S7_ScribeScrolls()
             }
             combo.Results[1] = resultsTable
 
+            --  UPDATE ITEM COMBO
+            --  =================
+
             Ext.UpdateItemCombo(combo)
             count = count + 1
             Ext.Print(LogPrefix .. "Scribing --> " .. combo.Name)
@@ -138,7 +160,9 @@ local function S7_ScribeScrolls()
     Ext.Print(LogPrefix .. "Scribed " .. count .. " Scrolls!")
     totalCount = totalCount + count
 
+    Ext.Print(LogPrefix .. "----------------------------------------------------------------------")
     Ext.Print(LogPrefix .. "Scribed a total of " .. totalCount .. " Crafting-Recipes!")
+    Ext.Print(LogPrefix .. "----------------------------------------------------------------------")
 end
 
 --  =================================================

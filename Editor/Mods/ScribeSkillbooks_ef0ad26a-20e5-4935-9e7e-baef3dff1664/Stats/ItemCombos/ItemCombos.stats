@@ -3,7 +3,7 @@
   <stat_objects>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Scribe_LOOT_Feather_A_Quill_A_LOOT_Ink_Pot_A" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="S7_Scribe_LOOT_Feather_A_Quill_A_LOOT_Ink_Pot_A" />
         <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="RecipeCategory" />
         <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 1" type="StringStatObjectFieldDefinition" value="LOOT_Feather_A_Quill_A" />
@@ -17,10 +17,34 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Scribe_BOOK_Leather_Cover_A_LOOT_Needle_Thread_BOOK_Paper_Sheet_A" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="S7_Scribe_BOOK_Leather_Cover_A_LOOT_Needle_Thread_BOOK_Paper_Sheet_A" />
         <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="RecipeCategory" />
         <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 1" type="StringStatObjectFieldDefinition" value="BOOK_Leather_Cover_A" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="LOOT_Needle_Thread_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="BOOK_Paper_Sheet_A" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 4" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 4" type="StringStatObjectFieldDefinition" value="BOOK_Paper_Sheet_A" />
+        <field name="Transform 4" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 5" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 5" type="StringStatObjectFieldDefinition" value="BOOK_Paper_Sheet_A" />
+        <field name="Transform 5" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="BOOK_Skill_WarriorRogueRanger_Blank_A" />
+        <field name="Result 2" type="StringStatObjectFieldDefinition" value="LOOT_Needle_A" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="BOOK_Skill_WarriorRogueRanger_Blank_A" />
+      </fields>
+    </stat_object>
+        <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="S7_Scribe_BOOK_Leather_Cover_A_LOOT_Needle_Thread_BOOK_Paper_Sheet_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="LOOT_Leather_Scraps_A" />
         <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 2" type="StringStatObjectFieldDefinition" value="LOOT_Needle_Thread_A" />

@@ -3,7 +3,6 @@
     "ModTable": "ScribeSkillbooks",
     "FeatureFlags": [
         "OsirisExtensions",
-        "Lua",
-        "Preprocessor"
+        "Lua"
     ]
 }

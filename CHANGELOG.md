@@ -2,7 +2,7 @@
 
 ----------
 
-## [1.0.6.0] --- 29th October 2020 --- **_Finalized ItemCombo Creation_**
+## [1.1.0.0] --- 29th October 2020 --- **_Finalized ItemCombo Creation_**
 
 ### NEW
 

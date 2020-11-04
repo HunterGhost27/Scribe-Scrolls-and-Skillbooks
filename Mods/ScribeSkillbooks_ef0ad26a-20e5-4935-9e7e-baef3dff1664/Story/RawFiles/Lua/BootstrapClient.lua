@@ -73,7 +73,7 @@ local function S7_ScribeSkillbooks()
                 --  UPDATE ITEM COMBO
                 --  =================
 
-                Ext.UpdateItemCombo(combo)
+                -- Ext.UpdateItemCombo(combo)
                 count = count + 1
                 Ext.Print(LogPrefix .. "Scribing --> " .. combo.Name)
             end
@@ -156,7 +156,7 @@ local function S7_ScribeScrolls()
             --  UPDATE ITEM COMBO
             --  =================
 
-            Ext.UpdateItemCombo(combo)
+            -- Ext.UpdateItemCombo(combo)
             count = count + 1
             Ext.Print(LogPrefix .. "Scribing --> " .. combo.Name)
         end

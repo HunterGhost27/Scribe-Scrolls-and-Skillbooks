@@ -1,6 +1,6 @@
---  ================
-PREFIX = "S7_Scribe"
---  ================
+--  =============================
+PREFIX = "S7_Scribe" -- ModPrefix
+--  =============================
 
 --  ================
 --  EXCEPTIONS TABLE
@@ -41,7 +41,7 @@ function DetermineSkillbook(stat) --  Determine the school and tier of blank ski
     local school = "WarriorRogueRanger" --  Generic blank skillbook by default
 
     local iterSchool = {
-        --  Valid Schools
+        --  Valid Schools (except WarriorRogueRanger)
         "Air",
         "Water",
         "Fire",
@@ -51,7 +51,7 @@ function DetermineSkillbook(stat) --  Determine the school and tier of blank ski
         "Summoning"
     }
 
-    if stat.ObjectCategory ~= nil then
+    if stat.ObjectCategory ~= nil then --  if ObjectCategory exists
         if string.match(stat.ObjectCategory, "Starter") or string.match(stat.ObjectCategory, "Early") then
             tier = "Blank_A" --  If Object Category is Starter or Early then set Tier 1
         end
@@ -74,5 +74,5 @@ end
 --  VARS
 --  ====
 
-LogPrefix = "[S7_Scribe:Lua:BootstrapClient] --- "
-totalCount = 0
+LogPrefix = "[S7_Scribe:Lua:BootstrapClient] --- " --  All logs start with this prefix.
+totalCount = 0 -- Variable to track the number of recipes created.

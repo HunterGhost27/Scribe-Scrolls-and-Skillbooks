@@ -2,6 +2,13 @@
 
 ----------
 
+## [1.1.0.0] --- 8th November 2020 --- **_Scriber_**
+
+### NEW
+
+* _Moved_ `Scriber` to a new lua file. Gets imported to both `BootstrapClient` and `BootstrapServer`.
+* _Started_ work on a third scribing method. Will not require creation of any recipes.
+
 ## [1.1.0.0] --- 29th October 2020 --- **_Finalized ItemCombo Creation_**
 
 ### NEW

@@ -7,21 +7,58 @@ IDENTIFIER = "S7_Scribe" -- ModPrefix
 --  MOD INFORMATION
 --  ===============
 
-ModInfo = Ext.GetModInfo("ef0ad26a-20e5-4935-9e7e-baef3dff1664")
+ModInfo = Ext.GetModInfo("ef0ad26a-20e5-4935-9e7e-baef3dff1664")    --  fetch ModInformation
 
-CENTRAL = {}
+CENTRAL = {}    --  Holds Global Settings and Information
 local file = Ext.LoadFile("S7Central.json") or ""
 if file ~= nil and file ~= "" then
     CENTRAL = Ext.JsonParse(file)
 end
 
 if CENTRAL[IDENTIFIER] == nil then
-    CENTRAL[IDENTIFIER] = {}
+    CENTRAL[IDENTIFIER] = {} -- Initialize Mod's Global Settings Profile
     for k, v in pairs(ModInfo) do
         CENTRAL[IDENTIFIER][k] = v
     end
     CENTRAL[IDENTIFIER]["ModSettings"] = {}
     Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
+end
+
+--  ==============
+--  MOD VERSIONING
+--  ==============
+
+function ParseVersion(version, returnMode)
+    local major, minor, revision, build = 0, 0, 0, 0
+
+    if type(version) == "string" then
+        if string.gmatch(version, "[^.]+") ~= nil then
+            local tbl = {}
+            for v in string.gmatch(version, "[^.]+") do
+                tbl[#tbl+1] = v
+            end
+            major, minor, revision, build = table.unpack(tbl)
+        else
+            version = math.floor(tonumber(version))
+            ParseVersion(version)
+        end
+	elseif type(version) == "number" then
+		version = math.tointeger(version)
+        major = math.floor(version >> 28)
+        minor = math.floor(version >> 24) & 0x0F
+        revision = math.floor(version >> 16) & 0xFF
+        build = math.floor(version & 0xFFFF)
+	end
+
+    local versionTable = table.pack(major, minor, revision, build)
+
+    if returnMode == "table" then
+        return versionTable
+    elseif returnMode == "string" then
+        return string.format("%s.%s.%s.%s", major, minor, revision, build)
+    else
+        return major, minor, revision, build
+    end
 end
 
 --  ================
@@ -96,5 +133,6 @@ end
 --  VARS
 --  ====
 
-LogPrefix = "[" .. IDENTIFIER .. ":Lua:BootstrapClient] --- " --  All logs start with this prefix.
+LogSource = "ScribeAuxiliary"
+LogPrefix = "[" .. IDENTIFIER .. ":Lua:" .. LogSource .. "] --- " --  All logs start with this prefix.
 TotalCount = 0 -- Variable to track the number of recipes created.

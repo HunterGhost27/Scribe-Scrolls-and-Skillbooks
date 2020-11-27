@@ -10,8 +10,8 @@ Ext.Require("S7_Scriber.lua")
 --  =======
 
 local function S7_Scriber(...)
-    --[[ 
-    Osiris Listener for 
+    --[[
+    Osiris Listener for
     event ItemTemplateCombinedWithItemTemplate( (STRING)_FirstItemTemplate, 
                                                 (STRING)_SecondItemTemplate,
                                                 (STRING)_ThirdItemTemplate,
@@ -22,13 +22,13 @@ local function S7_Scriber(...)
 --]]
     local args = {...} -- Takes all parameters
 
-    character = args[6] -- fetch (CHARACTERGUID)_Character
+    local character = args[6] -- fetch (CHARACTERGUID)_Character
 
     Ext.Print(args[1]:sub(-36))
     Ext.Print(Osi.GetItemForItemTemplateInInventory(character, args[1]:sub(-36)))
     Ext.Print(Osi.NRD_ItemGetStatsId(Osi.GetItemForItemTemplateInInventory(character, args[1]:sub(-36))))
 
-    stat = Osi.NRD_ItemGetStatsId(Osi.GetItemForItemTemplateInInventory(character, args[1]:sub(-36))) -- Get StatsID
+    local stat = Osi.NRD_ItemGetStatsId(Osi.GetItemForItemTemplateInInventory(character, args[1]:sub(-36))) -- Get StatsID
 
     if stat ~= nil then -- if stat exists
         local itemCombination = {

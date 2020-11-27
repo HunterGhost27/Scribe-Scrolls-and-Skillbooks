@@ -6,7 +6,7 @@ PREFIX = "S7_Scribe" -- ModPrefix
 --  EXCEPTIONS TABLE
 --  ================
 
-scribeException = {
+ScribeException = {
     --  list of all stats to ignore
     ["SKILLBOOK_AbilityPoint"] = true,
     ["SKILLBOOK_StatPoint"] = true
@@ -16,10 +16,10 @@ scribeException = {
 --  COMBO TEMPLATE
 --  ==============
 
-combo = {}
+Combo = {}
 
 function ReinitCombo() --  Resets combo table to initial values
-    combo = {
+    Combo = {
         ["AutoLevel"] = false,
         ["CraftingStation"] = "None",
         ["Ingredients"] = {},
@@ -75,4 +75,4 @@ end
 --  ====
 
 LogPrefix = "[S7_Scribe:Lua:BootstrapClient] --- " --  All logs start with this prefix.
-totalCount = 0 -- Variable to track the number of recipes created.
+TotalCount = 0 -- Variable to track the number of recipes created.

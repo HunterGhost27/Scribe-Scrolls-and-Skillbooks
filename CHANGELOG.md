@@ -8,6 +8,10 @@
 
 * _Linked_ project to `S7Central`.
 * _Created_ function to parse versioning information. -- Credits to LaughingLeader 💯
+
+### CHANGED
+
+* _Reverts_ to `LegacyCompatibilityMode` if player has an on-going playthrough.
 ## [1.1.0.0] --- 8th November 2020 --- **_Scriber_**
 
 ### NEW

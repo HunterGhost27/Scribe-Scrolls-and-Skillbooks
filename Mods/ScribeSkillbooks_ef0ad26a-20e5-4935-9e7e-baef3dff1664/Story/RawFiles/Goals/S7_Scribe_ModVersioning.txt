@@ -50,9 +50,8 @@ CharacterGetHostCharacter(_Character)
 AND
 GlobalGetFlag("S7_Scribe_ModAddedTo_NewGame", 0)
 THEN
-OpenMessageBox(_Character, "Scribe Scrolls and Skillbooks has been updated but is incompatible with existing-saves. Please visit the mod-page for instructions!");
-S7_ExistingPlaythrough();
-
+OpenMessageBox(_Character, "Scribe Scrolls and Skillbooks has been updated but is incompatible with existing-saves. The mod will now revert the update; Please restart your game. Visit the mod-page for details!");
+NRD_ModCall("S7_Scribe", "S7_ExistingPlaythrough", "1");
 
 EXITSECTION
 

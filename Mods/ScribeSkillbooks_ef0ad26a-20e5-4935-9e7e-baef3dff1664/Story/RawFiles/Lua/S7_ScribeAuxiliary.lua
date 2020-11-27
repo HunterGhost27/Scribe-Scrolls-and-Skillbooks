@@ -1,6 +1,28 @@
---  =============================
-PREFIX = "S7_Scribe" -- ModPrefix
---  =============================
+
+--  ---------------------------------
+IDENTIFIER = "S7_Scribe" -- ModPrefix
+--  ---------------------------------
+
+--  ===============
+--  MOD INFORMATION
+--  ===============
+
+ModInfo = Ext.GetModInfo("ef0ad26a-20e5-4935-9e7e-baef3dff1664")
+
+CENTRAL = {}
+local file = Ext.LoadFile("S7Central.json") or ""
+if file ~= nil and file ~= "" then
+    CENTRAL = Ext.JsonParse(file)
+end
+
+if CENTRAL[IDENTIFIER] == nil then
+    CENTRAL[IDENTIFIER] = {}
+    for k, v in pairs(ModInfo) do
+        CENTRAL[IDENTIFIER][k] = v
+    end
+    CENTRAL[IDENTIFIER]["ModSettings"] = {}
+    Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
+end
 
 --  ================
 --  EXCEPTIONS TABLE
@@ -74,5 +96,5 @@ end
 --  VARS
 --  ====
 
-LogPrefix = "[S7_Scribe:Lua:BootstrapClient] --- " --  All logs start with this prefix.
+LogPrefix = "[" .. IDENTIFIER .. ":Lua:BootstrapClient] --- " --  All logs start with this prefix.
 TotalCount = 0 -- Variable to track the number of recipes created.

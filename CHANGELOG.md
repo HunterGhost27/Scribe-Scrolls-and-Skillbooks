@@ -2,6 +2,11 @@
 
 ----------
 
+## [1.1.0.0] --- 27th November 2020 --- **_S7 CENTRALIZE_**
+
+### NEW
+
+* _Linked_ project to `S7Central`.
 ## [1.1.0.0] --- 8th November 2020 --- **_Scriber_**
 
 ### NEW

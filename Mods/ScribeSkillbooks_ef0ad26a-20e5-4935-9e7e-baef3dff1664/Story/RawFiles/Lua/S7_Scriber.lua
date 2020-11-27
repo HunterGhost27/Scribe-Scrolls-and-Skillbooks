@@ -42,13 +42,13 @@ local function S7_ScribeSkillbooks()
 
                 Combo.Ingredients = ingredientTable
 
-                Combo.Name = PREFIX .. "_" .. scribable
+                Combo.Name = IDENTIFIER .. "_" .. scribable
 
                 --  CREATE RESULTS TABLE
                 --  ====================
 
                 local resultsTable = {
-                    ["Name"] = PREFIX .. scribable .. "_1",
+                    ["Name"] = IDENTIFIER .. scribable .. "_1",
                     ["PreviewIcon"] = "",
                     ["PreviewStatsId"] = scribable,
                     ["PreviewTooltip"] = "",
@@ -125,13 +125,13 @@ local function S7_ScribeScrolls()
 
             Combo.Ingredients = ingredientTable
 
-            Combo.Name = PREFIX .. "_" .. result
+            Combo.Name = IDENTIFIER .. "_" .. result
 
             --  CREATE RESULTS TABLE
             --  ====================
 
             local resultsTable = {
-                ["Name"] = PREFIX .. result .. "_1",
+                ["Name"] = IDENTIFIER .. result .. "_1",
                 ["PreviewIcon"] = "",
                 ["PreviewStatsId"] = result,
                 ["PreviewTooltip"] = "",

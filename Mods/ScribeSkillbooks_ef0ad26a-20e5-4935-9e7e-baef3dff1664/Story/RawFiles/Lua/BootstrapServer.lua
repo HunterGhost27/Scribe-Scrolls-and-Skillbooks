@@ -71,3 +71,10 @@ local function S7_Scriber(...)
 end
 
 Ext.RegisterOsirisListener("ItemTemplateCombinedWithItemTemplate", 7, "after", S7_Scriber)
+local function S7_ExistingPlaythrough()
+    Ext.BroadcastMessage("S7_Scribe", "S7_ExistingPlaythrough")
+    local settings = {["RevertItemCombos"] = true}
+    Ext.SaveFile("S7_ScribeSettings.json", Ext.JsonStringify(settings))
+end
+
+Ext.NewCall(S7_ExistingPlaythrough, "S7_ExistingPlaythrough", "")

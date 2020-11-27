@@ -1,6 +1,6 @@
 {
     "RequiredExtensionVersion": 52,
-    "ModTable": "ScribeSkillbooks",
+    "ModTable": "S7_Scribe",
     "FeatureFlags": [
         "OsirisExtensions",
         "Lua"

@@ -3,4 +3,208 @@
 --  =======
 
 Ext.Require("S7_ScribeAuxiliary.lua")
-Ext.Require("S7_Scriber.lua")
+
+--  =======
+--  SCRIBER
+--  =======
+
+local function S7_ScribeSkillbooks()
+    Ext.Print(LogPrefix .. "======================================================================")
+    Ext.Print(LogPrefix .. "Scribing Skillbook Recipes")
+    Ext.Print(LogPrefix .. "======================================================================")
+    local objects = Ext.GetStatEntries("Object") --  Get All Object Entries.
+
+    local count = 0
+    for _, scribable in ipairs(objects) do --  Iterate over object entries.
+        if scribeException[scribable] ~= true then --  If not in exceptions table.
+            local stat = Ext.GetStat(scribable) or nil --  Get Stat Object for entry.
+
+            if stat ~= nil and stat.Using == "_Skillbooks" then --  If stat is a skillbook
+                ReinitCombo() --  Reinitialize combo table
+
+                --  BUILD INGREDIENTS TABLE
+                --  =======================
+
+                local ingredientTable = {
+                    [1] = {
+                        ["IngredientType"] = "Object",
+                        ["ItemRarity"] = "Sentinel",
+                        ["Object"] = scribable,
+                        ["Transform"] = "None"
+                    },
+                    [2] = {
+                        ["IngredientType"] = "Object",
+                        ["ItemRarity"] = "Sentinel",
+                        ["Object"] = "LOOT_Ink_Pot_A_Quill_A",
+                        ["Transform"] = "None"
+                    },
+                    [3] = {
+                        ["IngredientType"] = "Object",
+                        ["ItemRarity"] = "Sentinel",
+                        ["Object"] = DetermineSkillbook(stat),
+                        ["Transform"] = "Transform"
+                    }
+                }
+
+                combo.Ingredients = ingredientTable
+
+                combo.Name = PREFIX .. "_" .. scribable
+
+                --  CREATE RESULTS TABLE
+                --  ====================
+
+                local resultsTable = {
+                    ["Name"] = PREFIX .. scribable .. "_1",
+                    ["PreviewIcon"] = "",
+                    ["PreviewStatsId"] = scribable,
+                    ["PreviewTooltip"] = "",
+                    ["ReqLevel"] = 0,
+                    ["Requirement"] = "Sentinel",
+                    ["Results"] = {
+                        [1] = {
+                            ["Boost"] = "",
+                            ["Result"] = scribable,
+                            ["ResultAmount"] = 1
+                        }
+                    }
+                }
+                combo.Results[1] = resultsTable
+
+                --  UPDATE ITEM COMBO
+                --  =================
+
+                Ext.UpdateItemCombo(combo)
+                count = count + 1
+                Ext.Print(LogPrefix .. "Scribing --> " .. combo.Name)
+            end
+        end
+    end
+    Ext.Print("======================================================================")
+    Ext.Print(LogPrefix .. "Scribed " .. count .. " Skillbooks!")
+    totalCount = totalCount + count
+end
+
+--  ====================================================
+Ext.RegisterListener("StatsLoaded", S7_ScribeSkillbooks)
+--  ====================================================
+
+local function S7_ScribeScrolls()
+    Ext.Print(LogPrefix .. "Scribing Scroll Recipes")
+    Ext.Print("======================================================================")
+    local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombinations entries.
+
+    local count = 0
+    for _, scribable in ipairs(scrolls) do
+        local combination = Ext.GetItemCombo(scribable)
+        if
+            combination.RecipeCategory == "Grimoire" and
+                string.match(combination.Results[1]["Results"][1]["Result"], "SCROLL")
+         then
+            local result = combination.Results[1]["Results"][1]["Result"]
+
+            ReinitCombo() --  Reinitialize Combo Table.
+
+            --  CREATE INGREDIENTS
+            --  ==================
+
+            local ingredientTable = {
+                [1] = {
+                    ["IngredientType"] = "Object",
+                    ["ItemRarity"] = "Sentinel",
+                    ["Object"] = result,
+                    ["Transform"] = "None"
+                },
+                [2] = combination.Ingredients[2],
+                [3] = {
+                    ["IngredientType"] = "Object",
+                    ["ItemRarity"] = "Sentinel",
+                    ["Object"] = "LOOT_Ink_Pot_A_Quill_A",
+                    ["Transform"] = "None"
+                },
+                [4] = {
+                    ["IngredientType"] = "Object",
+                    ["ItemRarity"] = "Sentinel",
+                    ["Object"] = "BOOK_Paper_Sheet_A",
+                    ["Transform"] = "Transform"
+                }
+            }
+
+            combo.Ingredients = ingredientTable
+
+            combo.Name = PREFIX .. "_" .. result
+
+            --  CREATE RESULTS TABLE
+            --  ====================
+
+            local resultsTable = {
+                ["Name"] = PREFIX .. result .. "_1",
+                ["PreviewIcon"] = "",
+                ["PreviewStatsId"] = result,
+                ["PreviewTooltip"] = "",
+                ["ReqLevel"] = 0,
+                ["Requirement"] = "Sentinel",
+                ["Results"] = {
+                    [1] = {
+                        ["Boost"] = "",
+                        ["Result"] = result,
+                        ["ResultAmount"] = 1
+                    }
+                }
+            }
+            combo.Results[1] = resultsTable
+
+            --  UPDATE ITEM COMBO
+            --  =================
+
+            Ext.UpdateItemCombo(combo)
+            count = count + 1
+            Ext.Print(LogPrefix .. "Scribing --> " .. combo.Name)
+        end
+    end
+    Ext.Print(LogPrefix .. "======================================================================")
+    Ext.Print(LogPrefix .. "Scribed " .. count .. " Scrolls!")
+    totalCount = totalCount + count
+
+    Ext.Print(LogPrefix .. "----------------------------------------------------------------------")
+    Ext.Print(LogPrefix .. "Scribed a total of " .. totalCount .. " Crafting-Recipes!")
+    Ext.Print(LogPrefix .. "----------------------------------------------------------------------")
+end
+
+--  =================================================
+Ext.RegisterListener("StatsLoaded", S7_ScribeScrolls)
+--  =================================================
+
+local function onBroadcast(channel, payload)
+    if channel == "S7_Scribe" and payload == "ExistingPlaythrough" then
+        local settings = {["RevertItemCombos"] = true}
+        Ext.SaveFile("S7_ScribeSettings.json", Ext.JsonStringify(settings))
+    end
+end
+
+--  =============================================
+Ext.RegisterNetListener("S7_Scribe", onBroadcast)
+--  =============================================
+
+local function RevertItemCombo()
+    local file = Ext.LoadFile("S7_ScribeSettings.json") or ""
+    local settings = {}
+    if file ~= nil and file ~= "" then
+        settings = Ext.JsonParse(file)
+    end
+
+    if settings ~= {} and settings ~= nil then
+        Ext.Print(LogPrefix .. "Settings Loaded.")
+
+        if settings["RevertItemCombos"] == true then
+            Ext.AddPathOverride(
+                "Public/ScribeSkillbooks_ef0ad26a-20e5-4935-9e7e-baef3dff1664/Stats/Generated/ItemCombos.txt",
+                "Public/ScribeSkillbooks_ef0ad26a-20e5-4935-9e7e-baef3dff1664/Stats/Override/ItemCombos.txt"
+            )
+            Ext.Print(LogPrefix .. "Player in existing-save. Reverting ItemCombos.txt")
+        end
+    end
+end
+
+--  ======================================================
+Ext.RegisterListener("ModuleLoadStarted", RevertItemCombo)
+--  ======================================================

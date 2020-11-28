@@ -19,7 +19,9 @@ NOT DB_S7_ModIdentifier("S7_Scribe", "1.1.0.0")                         //  Late
 THEN
 Proc_S7_Scribe_Updater();                                               //  Run Update Procedure.
 DB_S7_ModIdentifier("S7_Scribe", "1.1.0.0");                            //  Add the latest version in the DB.
+/* [OSITOOLS_ONLY]
 NRD_DebugLog("[S7_Scribe:Osiris:ModVersioning] --- S7_Scribe Updated to Version: 1.1.0.0");
+*/
 
 //  =======
 //  UPDATER
@@ -38,11 +40,11 @@ _ModVersion != "1.1.0.0"                                                //  Filt
 THEN
 NOT DB_S7_ModIdentifier("S7_Scribe", _ModVersion);                      //  Removes all older facts from DB.
 
-
 //  ====================================================
 //  WARNING MESSAGE FOR THOSE WITH EXISTING-PLAYTHROUGHS
 //  ====================================================
 
+/* [OSITOOLS_ONLY]
 IF
 SavegameLoaded(_, _, _, _)
 AND
@@ -51,7 +53,8 @@ AND
 GlobalGetFlag("S7_Scribe_ModAddedTo_NewGame", 0)
 THEN
 OpenMessageBox(_Character, "Scribe Scrolls and Skillbooks has been updated but is incompatible with existing-saves. The mod will now revert the update; Please restart your game. Visit the mod-page for details!");
-NRD_ModCall("S7_Scribe", "S7_ExistingPlaythrough", "1");
+S7_Scribe_ToggleLegacyMode(1);
+*/
 
 EXITSECTION
 

@@ -3,6 +3,7 @@
     "ModTable": "S7_Scribe",
     "FeatureFlags": [
         "OsirisExtensions",
+        "Preprocessor",
         "Lua"
     ]
 }

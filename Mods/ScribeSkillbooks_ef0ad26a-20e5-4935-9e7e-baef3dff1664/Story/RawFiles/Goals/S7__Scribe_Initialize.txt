@@ -16,7 +16,9 @@ IF
 GameEventSet("GAMEEVENT_GameStarted")
 THEN
 GlobalSetFlag("S7_Scribe_ModAddedTo_NewGame");
+/* [OSITOOLS_ONLY]
 NRD_DebugLog("[S7_Scribe:Osiris:Initializer] --- Mod added to New Game.");
+*/
 GoalCompleted;
 
 //  =============================
@@ -28,7 +30,9 @@ SavegameLoaded(_, _, _, _)
 AND
 DB_StoryStarted(_)
 THEN
+/* [OSITOOLS_ONLY]
 NRD_DebugLog("[S7_Scribe:Osiris:Initializer] --- Mod added to Existing Save.");
+*/
 GoalCompleted;
 
 EXITSECTION

@@ -12,6 +12,9 @@
 ### CHANGED
 
 * _Reverts_ to `LegacyCompatibilityMode` if player has an on-going playthrough.
+* _Renamed_ `S7_Scriber` to `S7_RecipeGenerator` and split `ItemCombinator` into its own file.
+* _Switched_ old and new `ItemCombo.txt` around. People without extender can continue using old files this way.
+
 ## [1.1.0.0] --- 8th November 2020 --- **_Scriber_**
 
 ### NEW

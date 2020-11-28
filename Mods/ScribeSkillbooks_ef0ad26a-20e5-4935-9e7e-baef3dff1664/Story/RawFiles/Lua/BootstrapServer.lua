@@ -5,8 +5,6 @@
 Ext.Require("S7_ScribeAuxiliary.lua")
 Ext.Require("S7_ItemCombinator.lua")
 
-LogSource = "BootstrapServer"
-
 --  ==================================
 --  ACTIVATE LEGACY COMPATIBILITY MODE
 --  ==================================

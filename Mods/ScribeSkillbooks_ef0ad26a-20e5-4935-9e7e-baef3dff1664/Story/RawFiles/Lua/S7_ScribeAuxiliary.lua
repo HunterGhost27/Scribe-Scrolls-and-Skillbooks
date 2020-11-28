@@ -135,6 +135,5 @@ end
 --  VARS
 --  ====
 
-LogSource = "ScribeAuxiliary"
-LogPrefix = "[" .. IDENTIFIER .. ":Lua:" .. LogSource .. "] --- " --  All logs start with this prefix.
+LogPrefix = function(source) return "[" .. IDENTIFIER .. ":Lua:" .. source .. "] --- " end --  All logs start with this prefix.
 TotalCount = 0 -- Variable to track the number of recipes created.

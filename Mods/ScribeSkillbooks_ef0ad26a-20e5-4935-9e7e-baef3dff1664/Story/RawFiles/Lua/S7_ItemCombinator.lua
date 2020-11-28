@@ -1,5 +1,3 @@
-LogSource = "ItemCombinator"
-
 --  ===============
 --  ITEM COMBINATOR
 --  ===============

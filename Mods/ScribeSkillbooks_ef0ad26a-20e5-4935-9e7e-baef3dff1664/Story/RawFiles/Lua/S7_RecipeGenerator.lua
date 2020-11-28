@@ -69,7 +69,7 @@ local function RecipeGeneratorSkillbooks()
                 --  UPDATE ITEM COMBO
                 --  =================
 
-                -- Ext.UpdateItemCombo(combo)
+                Ext.UpdateItemCombo(Combo)
                 count = count + 1
                 Ext.Print(LogPrefix .. "Scribing --> " .. Combo.Name)
             end
@@ -148,7 +148,7 @@ local function RecipeGeneratorScrolls()
             --  UPDATE ITEM COMBO
             --  =================
 
-            -- Ext.UpdateItemCombo(combo)
+            Ext.UpdateItemCombo(Combo)
             count = count + 1
             Ext.Print(LogPrefix .. "Scribing --> " .. Combo.Name)
         end

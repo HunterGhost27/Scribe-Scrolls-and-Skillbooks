@@ -117,7 +117,7 @@ function DetermineSkillbook(stat) --  Determine the school and tier of blank ski
             tier = "Blank_A" --  If Object Category is Starter or Early then set Tier 1
         end
 
-        for _, element in ipairs(iterSchool) do
+        for _, element in pairs(iterSchool) do
             if string.match(stat.Name, element) or string.match(stat.ObjectCategory, element) then
                 school = element --   Get School name
             end

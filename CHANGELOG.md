@@ -9,6 +9,7 @@
 * _Linked_ project to `S7Central`.
 * _Created_ function to parse versioning information. -- Credits to LaughingLeader 💯
 * _Added_ a check to disable `LegacyMode` on NewGame.
+* _Created_ proper `ModVersioning`.
 
 ### CHANGED
 

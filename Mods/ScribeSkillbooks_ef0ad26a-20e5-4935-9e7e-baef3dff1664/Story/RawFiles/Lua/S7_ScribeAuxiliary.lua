@@ -3,6 +3,13 @@
 IDENTIFIER = "S7_Scribe" -- ModPrefix
 --  ---------------------------------
 
+--  ====
+--  VARS
+--  ====
+
+LogPrefix = function(source) return "[" .. IDENTIFIER .. ":Lua:" .. source .. "] --- " end --  All logs start with this prefix.
+TotalCount = 0 -- Variable to track the number of recipes created.
+
 --  ===============
 --  MOD INFORMATION
 --  ===============
@@ -15,6 +22,10 @@ if file ~= nil and file ~= "" then
     CENTRAL = Ext.JsonParse(file)
 end
 
+--  ======  MOD VERSIONING  =======
+Ext.Require("S7_ModVersioning.lua")
+--  ===============================
+
 if CENTRAL[IDENTIFIER] == nil then
     CENTRAL[IDENTIFIER] = {} -- Initialize Mod's Global Settings Profile
     for k, v in pairs(ModInfo) do
@@ -24,43 +35,8 @@ if CENTRAL[IDENTIFIER] == nil then
         ["LegacyCompatibilityMode"] = false,
         ["RecipeGeneration"] = true
     }
+    CENTRAL[IDENTIFIER]["ModVersion"] = ParseVersion(ModInfo.Version, "string")
     Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
-end
-
---  ==============
---  MOD VERSIONING
---  ==============
-
-function ParseVersion(version, returnMode)
-    local major, minor, revision, build = 0, 0, 0, 0
-    local versionTable = {}
-
-    if type(version) == "string" then
-        if string.gmatch(version, "[^.]+") ~= nil then
-            for v in string.gmatch(version, "[^.]+") do
-                versionTable[#versionTable+1] = v
-            end
-            major, minor, revision, build = table.unpack(versionTable)
-        else
-            version = math.floor(tonumber(version))
-            ParseVersion(version)
-        end
-	elseif type(version) == "number" then
-        version = math.tointeger(version)
-        major = math.floor(version >> 28)
-        minor = math.floor(version >> 24) & 0x0F
-        revision = math.floor(version >> 16) & 0xFF
-        build = math.floor(version & 0xFFFF)
-        versionTable = table.pack(major, minor, revision, build)
-	end
-
-    if returnMode == "table" then
-        return versionTable
-    elseif returnMode == "string" then
-        return string.format("%s.%s.%s.%s", major, minor, revision, build)
-    else
-        return major, minor, revision, build
-    end
 end
 
 --  ================
@@ -130,10 +106,3 @@ function DetermineSkillbook(stat) --  Determine the school and tier of blank ski
 
     return "BOOK_Skill_" .. school .. "_" .. tier --  Return Skillbook
 end
-
---  ====
---  VARS
---  ====
-
-LogPrefix = function(source) return "[" .. IDENTIFIER .. ":Lua:" .. source .. "] --- " end --  All logs start with this prefix.
-TotalCount = 0 -- Variable to track the number of recipes created.

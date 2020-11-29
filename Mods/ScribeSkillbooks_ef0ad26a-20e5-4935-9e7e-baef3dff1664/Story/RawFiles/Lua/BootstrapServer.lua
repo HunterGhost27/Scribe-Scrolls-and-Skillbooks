@@ -3,7 +3,7 @@
 --  =======
 
 Ext.Require("S7_ScribeAuxiliary.lua")
-Ext.Require("S7_ItemCombinator.lua")
+-- Ext.Require("S7_ItemCombinator.lua")
 
 --  ==================================
 --  ACTIVATE LEGACY COMPATIBILITY MODE
@@ -11,11 +11,8 @@ Ext.Require("S7_ItemCombinator.lua")
 
 function S7_Scribe_ToggleLegacyMode(param)
     local legacyCompMode = false
-    if param == 1 then
-        legacyCompMode = true
-    elseif param == 0 then
-        legacyCompMode = false
-    end
+    if param == 1 then legacyCompMode = true
+    elseif param == 0 then legacyCompMode = false end
 
     local package = table.pack("ToggleLegacyMode", legacyCompMode)
 

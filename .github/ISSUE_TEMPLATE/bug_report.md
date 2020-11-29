@@ -1,7 +1,7 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: "[BUG]:"
+about: Create a report to help improve this project
+title: "[BUG]: "
 labels: bug
 assignees: Shresht7
 
@@ -20,4 +20,4 @@ Steps to reproduce the behaviour.
 If applicable, add screenshots to help explain your problem.
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context about the problem.

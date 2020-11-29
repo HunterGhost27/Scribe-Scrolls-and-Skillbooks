@@ -18,6 +18,7 @@ function S7_Scribe_ToggleLegacyMode(param)
 
     Ext.BroadcastMessage("S7_Scribe", Ext.JsonStringify(package))
     CENTRAL[IDENTIFIER]["ModSettings"]["LegacyCompatibilityMode"] = legacyCompMode
+    CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] = not legacyCompMode
     Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
 end
 

@@ -34,8 +34,10 @@ local function onBroadcast(channel, payload)
 
         if msg == "ToggleLegacyMode" then
             CENTRAL[IDENTIFIER]["ModSettings"]["LegacyCompatibilityMode"] = legacyCompMode
+            CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] = not legacyCompMode
             Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
             Ext.Print(LogPrefix("BootstrapClient") .. "LegacyMode: " .. tostring(legacyCompMode))
+            Ext.Print(LogPrefix("BootstrapClient") .. "RecipeGenerator: " .. tostring(not legacyCompMode))
         end
     end
 end

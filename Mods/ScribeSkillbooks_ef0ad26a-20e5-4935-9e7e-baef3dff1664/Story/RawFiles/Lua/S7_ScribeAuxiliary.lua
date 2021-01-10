@@ -22,22 +22,17 @@ if file ~= nil and file ~= "" then
     CENTRAL = Ext.JsonParse(file)
 end
 
---  ======  MOD VERSIONING  =======
-Ext.Require("S7_ModVersioning.lua")
---  ===============================
-
 if CENTRAL[IDENTIFIER] == nil then
-    CENTRAL[IDENTIFIER] = {} -- Initialize Mod's Global Settings Profile
-    for k, v in pairs(ModInfo) do
-        CENTRAL[IDENTIFIER][k] = v
-    end
+    CENTRAL[IDENTIFIER] = {}  -- Initialize Mod's Global Settings Profile
     CENTRAL[IDENTIFIER]["ModSettings"] = {
         ["LegacyCompatibilityMode"] = false,
         ["RecipeGeneration"] = true
     }
-    CENTRAL[IDENTIFIER]["ModVersion"] = ParseVersion(ModInfo.Version, "string")
-    Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
 end
+
+--  ======  MOD VERSIONING  =======
+Ext.Require("S7_ModVersioning.lua")
+--  ===============================
 
 --  ================
 --  EXCEPTIONS TABLE

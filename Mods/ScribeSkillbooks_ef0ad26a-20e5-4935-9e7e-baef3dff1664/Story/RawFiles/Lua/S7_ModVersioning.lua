@@ -70,10 +70,15 @@ local function ModUpdater(prevVersion, currVersion, forceUpdate)
 
     if isUpdatedRequired or forceUpdate then
         Ext.Print(LogPrefix("ModVersioning") .. "Updating " .. IDENTIFIER .. " from " .. ParseVersion(prevVersion, "string") .. " to " .. ParseVersion(currVersion, "string"))
-        CENTRAL[IDENTIFIER]["ModVersion"] = ParseVersion(currVersion, "string")
-        Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
     else
     end
 end
 
 ModUpdater(prevVersion, currVersion)
+
+for k, v in pairs(ModInfo) do
+    CENTRAL[IDENTIFIER][k] = v
+end
+
+CENTRAL[IDENTIFIER]["ModVersion"] = ParseVersion(ModInfo.Version, "string")
+Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))

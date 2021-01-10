@@ -11,12 +11,16 @@ local function RecipeGeneratorSkillbooks()
     local objects = Ext.GetStatEntries("Object") --  Get All Object Entries.
 
     local count = 0
-    for _, scribable in ipairs(objects) do --  Iterate over object entries.
+    for _, scribable in pairs(objects) do --  Iterate over object entries.
         if ScribeException[scribable] ~= true then --  If not in exceptions table.
             local stat = Ext.GetStat(scribable) or nil --  Get Stat Object for entry.
 
             if stat ~= nil and stat.Using == "_Skillbooks" then --  If stat is a skillbook
-                ReinitCombo() --  Reinitialize combo table
+
+                Combo = Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable) or nil
+                if Combo == nil then
+                    ReinitCombo() --  Reinitialize combo table
+                end
 
                 --  BUILD INGREDIENTS TABLE
                 --  =======================
@@ -50,7 +54,7 @@ local function RecipeGeneratorSkillbooks()
                 --  ====================
 
                 local resultsTable = {
-                    ["Name"] = IDENTIFIER .. scribable .. "_1",
+                    ["Name"] = IDENTIFIER .. "_" .. scribable .. "_1",
                     ["PreviewIcon"] = "",
                     ["PreviewStatsId"] = scribable,
                     ["PreviewTooltip"] = "",
@@ -72,6 +76,7 @@ local function RecipeGeneratorSkillbooks()
                 Ext.UpdateItemCombo(Combo)
                 count = count + 1
                 Ext.Print(LogPrefix("RecipeGenerator") .. "Scribing --> " .. Combo.Name)
+                ReinitCombo()
             end
         end
     end
@@ -86,15 +91,20 @@ local function RecipeGeneratorScrolls()
     local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombinations entries.
 
     local count = 0
-    for _, scribable in ipairs(scrolls) do
-        local combination = Ext.GetItemCombo(scribable)
+    for _, scribable in pairs(scrolls) do
+        local combination = Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable)
+        if combination == nil then
+            ReinitCombo() --  Reinitialize Combo Table.
+        else
+            Combo = combination
+        end
+
         if
             combination.RecipeCategory == "Grimoire" and
                 string.match(combination.Results[1]["Results"][1]["Result"], "SCROLL")
          then
             local result = combination.Results[1]["Results"][1]["Result"]
 
-            ReinitCombo() --  Reinitialize Combo Table.
 
             --  CREATE INGREDIENTS
             --  ==================
@@ -129,7 +139,7 @@ local function RecipeGeneratorScrolls()
             --  ====================
 
             local resultsTable = {
-                ["Name"] = IDENTIFIER .. result .. "_1",
+                ["Name"] = IDENTIFIER .. "_" .. result .. "_1",
                 ["PreviewIcon"] = "",
                 ["PreviewStatsId"] = result,
                 ["PreviewTooltip"] = "",
@@ -151,6 +161,7 @@ local function RecipeGeneratorScrolls()
             Ext.UpdateItemCombo(Combo)
             count = count + 1
             Ext.Print(LogPrefix("RecipeGenerator") .. "Scribing --> " .. Combo.Name)
+            break
         end
     end
     Ext.Print(LogPrefix("RecipeGenerator") .. "======================================================================")
@@ -165,6 +176,6 @@ end
 --  ==============================================================
 if CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] then
     Ext.RegisterListener("StatsLoaded", RecipeGeneratorSkillbooks)
-    Ext.RegisterListener("StatsLoaded", RecipeGeneratorScrolls)
+    -- Ext.RegisterListener("StatsLoaded", RecipeGeneratorScrolls)
 end
 --  ==============================================================

@@ -1,45 +1,58 @@
-
---  ---------------------------------
-IDENTIFIER = "S7_Scribe" -- ModPrefix
---  ---------------------------------
-
---  ====
---  VARS
---  ====
-
-LogPrefix = function(source) return "[" .. IDENTIFIER .. ":Lua:" .. source .. "] --- " end --  All logs start with this prefix.
-TotalCount = 0 -- Variable to track the number of recipes created.
+--  ======== AUX FUNCTIONS  ==========
+Ext.Require("Functions/Auxiliary.lua")
+--  ==================================
 
 --  ===============
 --  MOD INFORMATION
 --  ===============
 
-ModInfo = Ext.GetModInfo("ef0ad26a-20e5-4935-9e7e-baef3dff1664")    --  fetch ModInformation
-
-CENTRAL = {}    --  Holds Global Settings and Information
-local file = Ext.LoadFile("S7Central.json") or ""
-if file ~= nil and file ~= "" then
-    CENTRAL = Ext.JsonParse(file)
-end
-
-if CENTRAL[IDENTIFIER] == nil then
-    CENTRAL[IDENTIFIER] = {}  -- Initialize Mod's Global Settings Profile
-    CENTRAL[IDENTIFIER]["ModSettings"] = {
-        ["LegacyCompatibilityMode"] = false,
-        ["RecipeGeneration"] = true
+local modInfoTable = {
+    ["Author"] = MODINFO.Author,
+    ["Name"] = MODINFO.Name,
+    ["UUID"] = MODINFO.UUID,
+    ["Version"] = MODINFO.Version,
+    ["PublishedVersion"] = MODINFO.PublishVersion,
+    ["ModVersion"] = "0.0.0.0",
+    ["ModSettings"] = {
+        ["LegacyCompatibilityMode"] = true,
+        ["RecipeGeneration"] = false
     }
+}
+
+CENTRAL = LoadFile("S7Central.json") or {} --  Holds Global Settings and Information
+if CENTRAL[IDENTIFIER] == nil then CENTRAL[IDENTIFIER] = Rematerialize(modInfoTable) end
+
+--  =========  UPDATER  =========
+Ext.Require("Shared/Updater.lua")
+--  =============================
+
+--- Initialize CENTRAL
+---@param ref table Reference table
+---@param tar table Target table
+local function initCENTRAL(ref, tar)
+    for field, value in pairs(ref) do
+        if type(value) == 'table' then initCENTRAL(value, tar[field]) end
+        if MODINFO[field] then tar[field] = Rematerialize(MODINFO[field])
+        else if not tar[field] then tar[field] = Rematerialize(value) end end
+    end
 end
 
---  ======  MOD VERSIONING  =======
-Ext.Require("S7_ModVersioning.lua")
---  ===============================
+initCENTRAL(modInfoTable, CENTRAL[IDENTIFIER])
+CENTRAL[IDENTIFIER]["ModVersion"] = ParseVersion(MODINFO.Version, "string")
+SaveFile("S7Central.json", CENTRAL)
+
+--  ====
+--  VARS
+--  ====
+
+TotalCount = 0 -- Variable to track the number of recipes created.
 
 --  ================
 --  EXCEPTIONS TABLE
 --  ================
 
 ScribeException = {
-    --  list of all stats to ignore
+    --  list of stats to ignore
     ["SKILLBOOK_AbilityPoint"] = true,
     ["SKILLBOOK_StatPoint"] = true
 }

@@ -2,8 +2,8 @@
 --  IMPORTS
 --  =======
 
-Ext.Require("S7_ScribeAuxiliary.lua")
--- Ext.Require("S7_ItemCombinator.lua")
+Ext.Require("Auxiliary.lua")
+-- Ext.Require("Server/ItemCombinator.lua")
 
 --  ==================================
 --  ACTIVATE LEGACY COMPATIBILITY MODE

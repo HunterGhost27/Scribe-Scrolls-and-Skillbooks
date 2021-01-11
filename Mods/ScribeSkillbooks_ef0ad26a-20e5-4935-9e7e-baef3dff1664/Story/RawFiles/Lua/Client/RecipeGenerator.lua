@@ -1,13 +1,9 @@
-RecipeGenerator = "RecipeGenerator"
-
 --  =======
 --  SCRIBER
 --  =======
 
 local function RecipeGeneratorSkillbooks()
-    Ext.Print("======================================================================")
-    Ext.Print(LogPrefix("RecipeGenerator") .. "Scribing Skillbook Recipes")
-    Ext.Print("======================================================================")
+    Debug:HFPrint("Scribing Skillbook Recipes")
     local objects = Ext.GetStatEntries("Object") --  Get All Object Entries.
 
     local count = 0
@@ -75,18 +71,18 @@ local function RecipeGeneratorSkillbooks()
 
                 Ext.UpdateItemCombo(Combo)
                 count = count + 1
-                Ext.Print(LogPrefix("RecipeGenerator") .. "Scribing --> " .. Combo.Name)
+                Debug:Print("Scribing --> " .. Combo.Name)
                 ReinitCombo()
             end
         end
     end
     Ext.Print("======================================================================")
-    Ext.Print(LogPrefix("RecipeGenerator") .. "Scribed " .. count .. " Skillbooks!")
+    Debug:Print("Scribed " .. count .. " Skillbooks!")
     TotalCount = TotalCount + count
 end
 
 local function RecipeGeneratorScrolls()
-    Ext.Print(LogPrefix("RecipeGenerator") .. "Scribing Scroll Recipes")
+    Debug:Print("Scribing Scroll Recipes")
     Ext.Print("======================================================================")
     local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombinations entries.
 
@@ -160,17 +156,17 @@ local function RecipeGeneratorScrolls()
 
             Ext.UpdateItemCombo(Combo)
             count = count + 1
-            Ext.Print(LogPrefix("RecipeGenerator") .. "Scribing --> " .. Combo.Name)
+            Debug:Print("Scribing --> " .. Combo.Name)
             break
         end
     end
-    Ext.Print(LogPrefix("RecipeGenerator") .. "======================================================================")
-    Ext.Print(LogPrefix("RecipeGenerator") .. "Scribed " .. count .. " Scrolls!")
+    Debug:Print("======================================================================")
+    Debug:Print("Scribed " .. count .. " Scrolls!")
     TotalCount = TotalCount + count
 
-    Ext.Print(LogPrefix("RecipeGenerator") .. "----------------------------------------------------------------------")
-    Ext.Print(LogPrefix("RecipeGenerator") .. "Scribed a total of " .. TotalCount .. " Crafting-Recipes!")
-    Ext.Print(LogPrefix("RecipeGenerator") .. "----------------------------------------------------------------------")
+    Debug:Print("----------------------------------------------------------------------")
+    Debug:Print("Scribed a total of " .. TotalCount .. " Crafting-Recipes!")
+    Debug:Print("----------------------------------------------------------------------")
 end
 
 --  ==============================================================

@@ -5,7 +5,7 @@
 local function ItemCombinator(...)
     --[[
     Osiris Listener for
-    event ItemTemplateCombinedWithItemTemplate( (STRING)_FirstItemTemplate, 
+    event ItemTemplateCombinedWithItemTemplate( (STRING)_FirstItemTemplate,
                                                 (STRING)_SecondItemTemplate,
                                                 (STRING)_ThirdItemTemplate,
                                                 (STRING)_ForthItemTemplate,
@@ -14,9 +14,8 @@ local function ItemCombinator(...)
                                                 (ITEMGUID)_NewItem)
 --]]
 
-    local args = {...} -- Takes all parameters
+    local args = {...}
     local item1, item2, item3, item4, item5, character, newItem = table.unpack(args)
-
     local statsID = Osi.NRD_ItemGetStatsId(Osi.GetItemForItemTemplateInInventory(character, item1:sub(-36))) -- Get StatsID
 
     if statsID ~= nil then -- if stat exists

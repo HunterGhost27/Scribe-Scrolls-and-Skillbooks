@@ -2,8 +2,8 @@
 --  IMPORTS
 --  =======
 
-Ext.Require("S7_ScribeAuxiliary.lua")
-Ext.Require("S7_RecipeGenerator.lua")
+Ext.Require("Auxiliary.lua")
+Ext.Require("Client/RecipeGenerator.lua")
 
 --  ========================
 --  ITEM COMBO PATH OVERRIDE
@@ -11,7 +11,7 @@ Ext.Require("S7_RecipeGenerator.lua")
 
 local function ItemComboPathOverride()
     if CENTRAL[IDENTIFIER]["ModSettings"]["LegacyCompatibilityMode"] then
-        Ext.Print(LogPrefix("BootstrapClient") .. "Legacy Compatibility Mode Active. Keeping old ItemCombos.txt")
+        Debug:Warn("Legacy Compatibility Mode Active. Keeping old ItemCombos.txt")
     else
         Ext.AddPathOverride(
             "Public/ScribeSkillbooks_ef0ad26a-20e5-4935-9e7e-baef3dff1664/Stats/Generated/ItemCombos.txt",  --  Old ItemCombos
@@ -36,8 +36,8 @@ local function onBroadcast(channel, payload)
             CENTRAL[IDENTIFIER]["ModSettings"]["LegacyCompatibilityMode"] = legacyCompMode
             CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] = not legacyCompMode
             Ext.SaveFile("S7Central.json", Ext.JsonStringify(CENTRAL))
-            Ext.Print(LogPrefix("BootstrapClient") .. "LegacyMode: " .. tostring(legacyCompMode))
-            Ext.Print(LogPrefix("BootstrapClient") .. "RecipeGenerator: " .. tostring(not legacyCompMode))
+            Debug:Print("LegacyMode: " .. tostring(legacyCompMode))
+            Debug:Print("RecipeGenerator: " .. tostring(not legacyCompMode))
         end
     end
 end

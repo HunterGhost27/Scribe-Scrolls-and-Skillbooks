@@ -3,4 +3,5 @@
 --  =======
 
 Ext.Require("Auxiliary.lua")
-Ext.Require("Server/ItemCombinator.lua")
+
+-- if not CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] then Ext.Require("Server/ItemCombinator.lua") end

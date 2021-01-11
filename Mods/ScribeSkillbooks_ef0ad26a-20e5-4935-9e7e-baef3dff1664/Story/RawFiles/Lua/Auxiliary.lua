@@ -14,8 +14,8 @@ local modInfoTable = {
     ["PublishedVersion"] = MODINFO.PublishVersion,
     ["ModVersion"] = "0.0.0.0",
     ["ModSettings"] = {
-        ["LegacyCompatibilityMode"] = true,
-        ["RecipeGeneration"] = false
+        ["LegacyCompatibilityMode"] = false,
+        ["RecipeGeneration"] = true
     }
 }
 

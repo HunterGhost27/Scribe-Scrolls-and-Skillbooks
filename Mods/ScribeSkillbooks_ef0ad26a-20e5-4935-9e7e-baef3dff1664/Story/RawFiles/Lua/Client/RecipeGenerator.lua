@@ -1,106 +1,123 @@
+--  ================
+--  ITEM COMBINATION
+--  ================
+
+---@class ItemCombination
+---@field AutoLevel boolean
+---@field CraftingStation string
+---@field Ingredients table
+---@field Name string
+---@field RecipeCategory string
+---@field Results table
+ItemCombination = {
+    ["AutoLevel"] = false,
+    ["CraftingStation"] = "None",
+    ["Ingredients"] = {},
+    ["Name"] = "",
+    ["RecipeCategory"] = "Grimoire",
+    ["Results"] = {}
+}
+
+function ItemCombination:New(object)
+    local object = object or {}
+    object = Integrate(self, object)
+    return object
+end
+
+
 --  =======
 --  SCRIBER
 --  =======
 
 local function RecipeGeneratorSkillbooks()
-    Debug:HFPrint("Scribing Skillbook Recipes")
-    local objects = Ext.GetStatEntries("Object") --  Get All Object Entries.
+    Stringer:SetHeader("Scribing Skillbook Recipes")
+    local objects = Ext.GetStatEntries("Object") -- Get all Object stat-entries
+
+    --  list of stats to ignore
+    local ScribeException = {
+        ["SKILLBOOK_AbilityPoint"] = true,
+        ["SKILLBOOK_StatPoint"] = true
+    }
 
     local count = 0
-    for _, scribable in pairs(objects) do --  Iterate over object entries.
-        if ScribeException[scribable] ~= true then --  If not in exceptions table.
-            local stat = Ext.GetStat(scribable) or nil --  Get Stat Object for entry.
+    for _, scribable in pairs(objects) do
+        if ScribeException[scribable] then return end -- Exit if stat is in ScribeException
 
-            if stat ~= nil and stat.Using == "_Skillbooks" then --  If stat is a skillbook
+        local stat = Ext.GetStat(scribable)
+        if stat and stat.Using == "_Skillbooks" then -- Stat's parent is a _Skillbooks
 
-                Combo = Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable) or nil
-                if Combo == nil then
-                    ReinitCombo() --  Reinitialize combo table
-                end
+            Combo = ItemCombination:New(Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable))
 
-                --  BUILD INGREDIENTS TABLE
-                --  =======================
+            --  BUILD INGREDIENTS TABLE
+            --  =======================
 
-                local ingredientTable = {
+            local ingredientTable = {
+                [1] = {
+                    ["IngredientType"] = "Object",
+                    ["ItemRarity"] = "Sentinel",
+                    ["Object"] = scribable, -- Original Skillbook
+                    ["Transform"] = "None"
+                },
+                [2] = {
+                    ["IngredientType"] = "Object",
+                    ["ItemRarity"] = "Sentinel",
+                    ["Object"] = "LOOT_Ink_Pot_A_Quill_A", -- Inkpot-&-Quill
+                    ["Transform"] = "None"
+                },
+                [3] = {
+                    ["IngredientType"] = "Object",
+                    ["ItemRarity"] = "Sentinel",
+                    ["Object"] = DetermineSkillbook(stat), -- Associated Blank Skillbook
+                    ["Transform"] = "Transform"
+                }
+            }
+
+            Combo.Ingredients = ingredientTable -- Update ItemCombo's Ingredients Table
+            Combo.Name = IDENTIFIER .. "_" .. scribable -- Update ItemCombo's Name
+
+            --  CREATE RESULTS TABLE
+            --  ====================
+
+            local resultsTable = {
+                ["Name"] = IDENTIFIER .. "_" .. scribable .. "_1",
+                ["PreviewIcon"] = "",
+                ["PreviewStatsId"] = scribable,
+                ["PreviewTooltip"] = "",
+                ["ReqLevel"] = 0,
+                ["Requirement"] = "Sentinel",
+                ["Results"] = {
                     [1] = {
-                        ["IngredientType"] = "Object",
-                        ["ItemRarity"] = "Sentinel",
-                        ["Object"] = scribable,
-                        ["Transform"] = "None"
-                    },
-                    [2] = {
-                        ["IngredientType"] = "Object",
-                        ["ItemRarity"] = "Sentinel",
-                        ["Object"] = "LOOT_Ink_Pot_A_Quill_A",
-                        ["Transform"] = "None"
-                    },
-                    [3] = {
-                        ["IngredientType"] = "Object",
-                        ["ItemRarity"] = "Sentinel",
-                        ["Object"] = DetermineSkillbook(stat),
-                        ["Transform"] = "Transform"
+                        ["Boost"] = "",
+                        ["Result"] = scribable,
+                        ["ResultAmount"] = 1
                     }
                 }
+            }
+            Combo.Results[1] = resultsTable -- Update ItemCombo's Results Table
 
-                Combo.Ingredients = ingredientTable
+            --  UPDATE ITEM COMBO
+            --  =================
 
-                Combo.Name = IDENTIFIER .. "_" .. scribable
-
-                --  CREATE RESULTS TABLE
-                --  ====================
-
-                local resultsTable = {
-                    ["Name"] = IDENTIFIER .. "_" .. scribable .. "_1",
-                    ["PreviewIcon"] = "",
-                    ["PreviewStatsId"] = scribable,
-                    ["PreviewTooltip"] = "",
-                    ["ReqLevel"] = 0,
-                    ["Requirement"] = "Sentinel",
-                    ["Results"] = {
-                        [1] = {
-                            ["Boost"] = "",
-                            ["Result"] = scribable,
-                            ["ResultAmount"] = 1
-                        }
-                    }
-                }
-                Combo.Results[1] = resultsTable
-
-                --  UPDATE ITEM COMBO
-                --  =================
-
-                Ext.UpdateItemCombo(Combo)
-                count = count + 1
-                Debug:Print("Scribing --> " .. Combo.Name)
-                ReinitCombo()
-            end
+            Ext.UpdateItemCombo(Combo)
+            Stringer:Add("Scribing --> " .. Combo.Name)
+            count = count + 1
         end
     end
-    Ext.Print("======================================================================")
-    Debug:Print("Scribed " .. count .. " Skillbooks!")
+    Debug:FPrint(Stringer:Build())
+    Debug:FPrint("Scribed " .. count .. " Skillbooks!")
     TotalCount = TotalCount + count
 end
 
 local function RecipeGeneratorScrolls()
-    Debug:Print("Scribing Scroll Recipes")
-    Ext.Print("======================================================================")
+    Stringer:SetHeader("Scribing Scroll Recipes")
     local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombinations entries.
 
     local count = 0
     for _, scribable in pairs(scrolls) do
-        local combination = Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable)
-        if combination == nil then
-            ReinitCombo() --  Reinitialize Combo Table.
-        else
-            Combo = combination
-        end
+        Combo = ItemCombination:New(Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable))
 
-        if
-            combination.RecipeCategory == "Grimoire" and
-                string.match(combination.Results[1]["Results"][1]["Result"], "SCROLL")
-         then
-            local result = combination.Results[1]["Results"][1]["Result"]
-
+        local result = Combo.Results[1]["Results"][1]["Result"]
+        if Combo.RecipeCategory == "Grimoire" and string.match(result, "SCROLL") then
 
             --  CREATE INGREDIENTS
             --  ==================
@@ -109,27 +126,26 @@ local function RecipeGeneratorScrolls()
                 [1] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
-                    ["Object"] = result,
+                    ["Object"] = result, -- Original Scroll
                     ["Transform"] = "None"
                 },
-                [2] = combination.Ingredients[2],
+                [2] = Combo.Ingredients[2], -- Essense, I think
                 [3] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
-                    ["Object"] = "LOOT_Ink_Pot_A_Quill_A",
+                    ["Object"] = "LOOT_Ink_Pot_A_Quill_A", -- Inkpot-&-Quill
                     ["Transform"] = "None"
                 },
                 [4] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
-                    ["Object"] = "BOOK_Paper_Sheet_A",
+                    ["Object"] = "BOOK_Paper_Sheet_A", -- Sheet of Paper
                     ["Transform"] = "Transform"
                 }
             }
 
-            Combo.Ingredients = ingredientTable
-
-            Combo.Name = IDENTIFIER .. "_" .. result
+            Combo.Ingredients = ingredientTable -- Update ItemCombo's Ingredients Table
+            Combo.Name = IDENTIFIER .. "_" .. result -- Update ItemCombo's Name
 
             --  CREATE RESULTS TABLE
             --  ====================
@@ -149,29 +165,27 @@ local function RecipeGeneratorScrolls()
                     }
                 }
             }
-            Combo.Results[1] = resultsTable
+            Combo.Results[1] = resultsTable -- Update ItemCombo's Results Table
 
             --  UPDATE ITEM COMBO
             --  =================
 
             Ext.UpdateItemCombo(Combo)
+            Stringer:Add("Scribing --> " .. Combo.Name)
             count = count + 1
-            Debug:Print("Scribing --> " .. Combo.Name)
-            break
+            break --@TODO REMOVE THIS LMAO
         end
     end
-    Debug:Print("======================================================================")
-    Debug:Print("Scribed " .. count .. " Scrolls!")
+    Debug:FPrint(Stringer:Build())
+    Debug:FPrint("Scribed " .. count .. " Scrolls!")
     TotalCount = TotalCount + count
 
-    Debug:Print("----------------------------------------------------------------------")
-    Debug:Print("Scribed a total of " .. TotalCount .. " Crafting-Recipes!")
-    Debug:Print("----------------------------------------------------------------------")
+    Debug:HFPrint("Scribed a total of " .. TotalCount .. " Crafting-Recipes!", {['highlight'] = "-"})
 end
 
 --  ==============================================================
 if CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] then
     Ext.RegisterListener("StatsLoaded", RecipeGeneratorSkillbooks)
-    -- Ext.RegisterListener("StatsLoaded", RecipeGeneratorScrolls)
+    Ext.RegisterListener("StatsLoaded", RecipeGeneratorScrolls)
 end
 --  ==============================================================

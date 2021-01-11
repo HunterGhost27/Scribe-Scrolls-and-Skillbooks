@@ -41,41 +41,6 @@ initCENTRAL(modInfoTable, CENTRAL[IDENTIFIER])
 CENTRAL[IDENTIFIER]["ModVersion"] = ParseVersion(MODINFO.Version, "string")
 SaveFile("S7Central.json", CENTRAL)
 
---  ====
---  VARS
---  ====
-
-TotalCount = 0 -- Variable to track the number of recipes created.
-
---  ================
---  EXCEPTIONS TABLE
---  ================
-
-ScribeException = {
-    --  list of stats to ignore
-    ["SKILLBOOK_AbilityPoint"] = true,
-    ["SKILLBOOK_StatPoint"] = true
-}
-
---  ==============
---  COMBO TEMPLATE
---  ==============
-
-Combo = {}
-
-function ReinitCombo() --  Resets combo table to initial values
-    Combo = {
-        ["AutoLevel"] = false,
-        ["CraftingStation"] = "None",
-        ["Ingredients"] = {},
-        ["Name"] = "",
-        ["RecipeCategory"] = "Grimoire",
-        ["Results"] = {}
-    }
-end
-
-ReinitCombo() --  Initialize combo
-
 --  ================================
 --  DETERMINE APPROPRIATE SKILLBOOK
 --  ================================
@@ -114,3 +79,11 @@ function DetermineSkillbook(stat) --  Determine the school and tier of blank ski
 
     return "BOOK_Skill_" .. school .. "_" .. tier --  Return Skillbook
 end
+
+
+--  ====
+--  VARS
+--  ====
+
+TotalCount = 0 -- Variable to track the number of recipes created.
+InkpotNQuillTemplate = "7c9e8ca5-de93-4e43-be83-2cb6a9022c2f"

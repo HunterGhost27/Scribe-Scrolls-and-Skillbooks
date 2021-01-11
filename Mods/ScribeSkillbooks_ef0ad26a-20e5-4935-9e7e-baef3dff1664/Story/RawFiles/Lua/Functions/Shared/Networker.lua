@@ -25,7 +25,8 @@ function UserInformation:ReSync()
     --  =================
 
     local tempUsers = {}
-    for _, player in pairs(Osi.DB_IsPlayer:Get(nil)[1]) do tempUsers[#tempUsers+1] = Osi.CharacterGetReservedUserID(player) end
+    local db = Osi.DB_IsPlayer:Get(nil)[1] or {}
+    for _, player in pairs(db) do tempUsers[#tempUsers+1] = Osi.CharacterGetReservedUserID(player) end
 
     for _, user in pairs(tempUsers) do
         local profileID = Osi.GetUserProfileID(user)

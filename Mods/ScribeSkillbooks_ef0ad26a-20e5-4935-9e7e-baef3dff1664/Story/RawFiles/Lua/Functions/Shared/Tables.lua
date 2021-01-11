@@ -40,3 +40,20 @@ function Spairs(t, order)
         if keys[i] then return keys[i], t[keys[i]] end
     end
 end
+
+--  =============
+--  DESTRUCTURING
+--  =============
+
+---Destructure a table
+---@param tar table Target Table
+---@param t table Keys[] to destructure
+function Destructure(tar, t)
+    if type(t) ~= 'table' then return end
+    local temp = {}
+    for idx, key in Spairs(t) do
+        if type(tar[key]) == 'table' then temp[idx] = Destructure(tar[key], t) end
+        if tar[key] then temp[idx] = tar[key] end
+    end
+    return table.unpack(temp)
+end

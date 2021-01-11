@@ -1,3 +1,29 @@
+--  ========
+--  PINPOINT
+--  ========
+
+---Returns the index of value in target table
+---@param val any Value in Question
+---@param tar table Target Table
+---@return any key Index of Value
+function Pinpoint(val, tar, curr)
+    if type(tar) ~= 'table' then return end
+    local curr = curr or ""
+    local point = ""
+    for key, value in pairs(tar) do
+        if val == value then
+            point = curr .. tostring(key)
+        end
+    end
+    for key, value in pairs(tar) do
+        if type(value) == 'table' then
+            curr = curr .. tostring(key) .. "."
+            point = Pinpoint(val, value, curr)
+        end
+    end
+    return point
+end
+
 --  ====
 --  SCAN
 --  ====

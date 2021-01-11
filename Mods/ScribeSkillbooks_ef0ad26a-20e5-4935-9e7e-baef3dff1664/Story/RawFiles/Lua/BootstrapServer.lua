@@ -3,12 +3,13 @@
 --  =======
 
 Ext.Require("Auxiliary.lua")
--- Ext.Require("Server/ItemCombinator.lua")
+Ext.Require("Server/ItemCombinator.lua")
 
 --  ==================================
 --  ACTIVATE LEGACY COMPATIBILITY MODE
 --  ==================================
 
+--  Was Originally set through Osiris on SavegameLoaded.
 function S7_Scribe_ToggleLegacyMode(param)
     local legacyCompMode = false
     if param == 1 then legacyCompMode = true

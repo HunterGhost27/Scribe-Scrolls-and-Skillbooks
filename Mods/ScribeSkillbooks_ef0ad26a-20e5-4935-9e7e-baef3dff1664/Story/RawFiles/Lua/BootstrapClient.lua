@@ -3,7 +3,7 @@
 --  =======
 
 Ext.Require("Auxiliary.lua")
-Ext.Require("Client/RecipeGenerator.lua")
+if CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] then Ext.Require("Client/RecipeGenerator.lua") end
 
 --  ========================
 --  ITEM COMBO PATH OVERRIDE

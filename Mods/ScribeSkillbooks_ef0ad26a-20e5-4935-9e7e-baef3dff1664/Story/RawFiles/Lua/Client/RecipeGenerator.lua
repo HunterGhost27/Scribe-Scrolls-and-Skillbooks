@@ -129,7 +129,7 @@ local function RecipeGeneratorScrolls()
                     ["Object"] = scroll, -- Original Scroll
                     ["Transform"] = "None"
                 },
-                [2] = Combo.Ingredients[2],
+                [2] = Combo.Ingredients[2], -- Elemental Essense
                 [3] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
@@ -183,9 +183,7 @@ local function RecipeGeneratorScrolls()
     Debug:HFPrint("Scribed a total of " .. TotalCount .. " Crafting-Recipes!", {['highlight'] = "="})
 end
 
---  ==============================================================
-if CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] then
-    Ext.RegisterListener("StatsLoaded", RecipeGeneratorSkillbooks)
-    Ext.RegisterListener("StatsLoaded", RecipeGeneratorScrolls)
-end
---  ==============================================================
+--  ==========================================================
+Ext.RegisterListener("StatsLoaded", RecipeGeneratorSkillbooks)
+Ext.RegisterListener("StatsLoaded", RecipeGeneratorScrolls)
+--  ==========================================================

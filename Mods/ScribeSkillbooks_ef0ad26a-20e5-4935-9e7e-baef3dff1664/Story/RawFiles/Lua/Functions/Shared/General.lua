@@ -11,7 +11,7 @@ function IsValid(value)
     elseif type(value) == 'number' then if value == 0 then return false else return true end
     elseif type(value) == 'string' then return ValidString(value)
     elseif type(value) == 'function' or type(value) == 'thread' or type(value) == 'userdata' then return true
-    elseif type(value) == 'table' then return ValidString(Ext.JsonStringify(Rematerialize(value)))
+    elseif type(value) == 'table' then if value == {} then return false else return true end
     else return value end
 end
 
@@ -27,7 +27,7 @@ function Disintegrate(element, separator)
 
     local pieces = {}
     local separator = separator or " "
-    if type(element) == 'table' then return table.unpack(element) end
+    if type(element) == 'table' then pieces = element end
     if type(element) == 'string' then for split in string.gmatch(element, "[^" .. separator .. "]+") do pieces[#pieces + 1] = split end end
     return table.unpack(pieces)
 end

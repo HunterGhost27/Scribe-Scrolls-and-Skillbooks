@@ -1,31 +1,33 @@
---  ==============
---  MOD VERSIONING
---  ==============
+--  =======
+--  VERSION
+--  =======
 
---  PARSE MOD VERSIONS
---  ------------------
+MODINFO.ModVersion = "0.0.0.0"
+
+---@class Version
+Version = {
+    [1] = 0,---@type number Major
+    [2] = 0,---@type number Minor
+    [3] = 0,---@type number Revision
+    [4] = 0---@type number Build
+}
 
 --- Parse modVersion
 ---@param version string|table|number
----@param returnMode string|nil 'string', 'table' or nil
-function ParseVersion(version, returnMode)
-    local major, minor, revision, build = 0, 0, 0, 0
+---@return Version Version
+function Version:Parse(version)
     local versionTable = {}
 
     if type(version) == "string" then
         if string.gmatch(version, "[^.]+") ~= nil then
             for v in string.gmatch(version, "[^.]+") do versionTable[#versionTable + 1] = v end
-            major, minor, revision, build = table.unpack(versionTable)
         else
             version = math.floor(tonumber(version))
-            ParseVersion(version)
+            Version:Parse(version)
         end
-
-    elseif type(version) == "table" then
-        versionTable = version
-        major, minor, revision, build = table.unpack(versionTable)
-
+    elseif type(version) == "table" then versionTable = version
     elseif type(version) == "number" then
+        local major, minor, revision, build = 0, 0, 0, 0
         version = math.tointeger(version)
         major = math.floor(version >> 28)
         minor = math.floor(version >> 24) & 0x0F
@@ -34,7 +36,25 @@ function ParseVersion(version, returnMode)
         versionTable = table.pack(major, minor, revision, build)
 	end
 
-    if returnMode == "table" then return versionTable
-    elseif returnMode == "string" then return string.format("%s.%s.%s.%s", major, minor, revision, build)
-    else return major, minor, revision, build end
+    versionTable = Integrate(self, versionTable)
+    return versionTable
+end
+
+---Returns Version Table
+---@return table
+function Version:Table() return Rematerialize(self) end
+
+---Returns Formatted Version String
+---@return string
+function Version:String() return string.format("%s.%s.%s.%s", self[1], self[2], self[3], self[4]) end
+
+---Checks if Version is newer than v
+---@param v any
+---@return boolean
+function Version:IsNewerThan(v)
+    local version = Version:Parse(v)
+    for i, _ in Spairs(Rematerialize(self)) do
+        if self[i] > version[i] then return true end
+    end
+    return false
 end

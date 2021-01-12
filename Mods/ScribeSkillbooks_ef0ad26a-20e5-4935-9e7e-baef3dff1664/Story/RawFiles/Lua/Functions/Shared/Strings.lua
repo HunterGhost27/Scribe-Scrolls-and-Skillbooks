@@ -5,8 +5,10 @@
 --- Check validity of string.
 ---@param str any
 function ValidString(str)
-    if type(str) == "string" and str ~= "" and str ~= "{}" and str ~= "[]" then return true
-    else return false end
+    if type(str) ~= 'string' then return false end
+    if str == "" or str == "{}" or str == "[]" then return false end
+    if str == "00000000-0000-0000-0000-000000000000" or "NULL_00000000-0000-0000-0000-000000000000" then return false end
+    return true
 end
 
 --  ======
@@ -36,6 +38,10 @@ Color = {
     ["water"] = "#579CCA",
 }
 
+---Wrap font tags around string with corresponding color
+---@param color string Hex-Color-Value
+---@param str string
+---@return string
 local function addFontTags(color, str) return "<font color=\'" .. color .. "\'>" .. tostring(str) .. "</font>" end
 
 function Color:Red(str) return addFontTags(self.red, str) end

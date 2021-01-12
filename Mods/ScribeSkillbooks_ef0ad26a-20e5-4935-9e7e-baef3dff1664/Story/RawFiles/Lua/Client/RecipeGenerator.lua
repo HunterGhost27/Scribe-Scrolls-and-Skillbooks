@@ -24,11 +24,11 @@ function ItemCombination:New(object)
     return object
 end
 
-
 --  =======
 --  SCRIBER
 --  =======
 
+---Generates Skillbook Scribing Recipes
 local function RecipeGeneratorSkillbooks()
     Stringer:SetHeader("Scribing Skillbook Recipes")
     local objects = Ext.GetStatEntries("Object") -- Get all Object stat-entries
@@ -41,12 +41,12 @@ local function RecipeGeneratorSkillbooks()
 
     local count = 0
     for _, scribable in pairs(objects) do
-        if ScribeException[scribable] then return end -- Exit if stat is in ScribeException
+        if ScribeException[scribable] then break end -- Exit if stat is in ScribeException
 
         local stat = Ext.GetStat(scribable)
         if stat and stat.Using == "_Skillbooks" then -- Stat's parent is a _Skillbooks
 
-            Combo = ItemCombination:New(Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable))
+            local Combo = ItemCombination:New(Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable))
 
             --  BUILD INGREDIENTS TABLE
             --  =======================
@@ -99,25 +99,25 @@ local function RecipeGeneratorSkillbooks()
             --  =================
 
             Ext.UpdateItemCombo(Combo)
-            Stringer:Add("Scribing --> " .. Combo.Name)
+            Stringer:Add("Scribing --> " .. Combo.Name .. " for " .. scribable)
             count = count + 1
         end
     end
+    Stringer:LineBreak("_")
+    Stringer:Add("Scribed " .. count .. " Skillbooks!")
     Debug:FPrint(Stringer:Build())
-    Debug:FPrint("Scribed " .. count .. " Skillbooks!")
     TotalCount = TotalCount + count
 end
 
 local function RecipeGeneratorScrolls()
     Stringer:SetHeader("Scribing Scroll Recipes")
-    local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombinations entries.
+    local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombination entries.
 
     local count = 0
     for _, scribable in pairs(scrolls) do
-        Combo = ItemCombination:New(Ext.GetItemCombo(IDENTIFIER .. "_" .. scribable))
-
-        local result = Combo.Results[1]["Results"][1]["Result"]
-        if Combo.RecipeCategory == "Grimoire" and string.match(result, "SCROLL") then
+        if string.match(scribable, 'BOOK_Paper_Sheet_A') then
+            local Combo = ItemCombination:New(Ext.GetItemCombo(scribable))
+            local scroll = Combo.Results[1].Results[1].Result
 
             --  CREATE INGREDIENTS
             --  ==================
@@ -126,10 +126,10 @@ local function RecipeGeneratorScrolls()
                 [1] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
-                    ["Object"] = result, -- Original Scroll
+                    ["Object"] = scroll, -- Original Scroll
                     ["Transform"] = "None"
                 },
-                [2] = Combo.Ingredients[2], -- Essense, I think
+                [2] = Combo.Ingredients[2],
                 [3] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
@@ -145,22 +145,22 @@ local function RecipeGeneratorScrolls()
             }
 
             Combo.Ingredients = ingredientTable -- Update ItemCombo's Ingredients Table
-            Combo.Name = IDENTIFIER .. "_" .. result -- Update ItemCombo's Name
+            Combo.Name = IDENTIFIER .. "_" .. scroll -- Update ItemCombo's Name
 
             --  CREATE RESULTS TABLE
             --  ====================
 
             local resultsTable = {
-                ["Name"] = IDENTIFIER .. "_" .. result .. "_1",
+                ["Name"] = IDENTIFIER .. "_" .. scroll .. "_1",
                 ["PreviewIcon"] = "",
-                ["PreviewStatsId"] = result,
+                ["PreviewStatsId"] = scroll,
                 ["PreviewTooltip"] = "",
                 ["ReqLevel"] = 0,
                 ["Requirement"] = "Sentinel",
                 ["Results"] = {
                     [1] = {
                         ["Boost"] = "",
-                        ["Result"] = result,
+                        ["Result"] = scroll,
                         ["ResultAmount"] = 1
                     }
                 }
@@ -170,17 +170,17 @@ local function RecipeGeneratorScrolls()
             --  UPDATE ITEM COMBO
             --  =================
 
-            Ext.UpdateItemCombo(Combo)
-            Stringer:Add("Scribing --> " .. Combo.Name)
+            -- Ext.UpdateItemCombo(Combo)
+            Stringer:Add("Scribing --> " .. Combo.Name .. " for " .. scroll)
             count = count + 1
-            break --@TODO REMOVE THIS LMAO
         end
     end
+    Stringer:LineBreak("_")
+    Stringer:Add("Scribed " .. count .. " Scrolls!")
     Debug:FPrint(Stringer:Build())
-    Debug:FPrint("Scribed " .. count .. " Scrolls!")
     TotalCount = TotalCount + count
 
-    Debug:HFPrint("Scribed a total of " .. TotalCount .. " Crafting-Recipes!", {['highlight'] = "-"})
+    Debug:HFPrint("Scribed a total of " .. TotalCount .. " Crafting-Recipes!", {['highlight'] = "="})
 end
 
 --  ==============================================================

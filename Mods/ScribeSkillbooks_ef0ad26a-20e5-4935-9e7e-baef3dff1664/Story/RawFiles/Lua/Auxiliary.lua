@@ -45,13 +45,15 @@ SaveFile("S7Central.json", CENTRAL)
 --  DETERMINE APPROPRIATE SKILLBOOK
 --  ================================
 
-function DetermineSkillbook(stat) --  Determine the school and tier of blank skillbook required
+ ---Determine the school and tier of blank skillbook required
+ ---@param stat table
+ ---@return string
+function DetermineSkillbook(stat)
     local tier = "Blank_Step2_A" --   Tier 2 by default
-
     local school = "WarriorRogueRanger" --  Generic blank skillbook by default
 
+    --  Valid Schools (except WarriorRogueRanger)
     local iterSchool = {
-        --  Valid Schools (except WarriorRogueRanger)
         "Air",
         "Water",
         "Fire",
@@ -61,7 +63,7 @@ function DetermineSkillbook(stat) --  Determine the school and tier of blank ski
         "Summoning"
     }
 
-    if stat.ObjectCategory ~= nil then --  if ObjectCategory exists
+    if IsValid(stat.ObjectCategory) then --  if ObjectCategory exists
         if string.match(stat.ObjectCategory, "Starter") or string.match(stat.ObjectCategory, "Early") then
             tier = "Blank_A" --  If Object Category is Starter or Early then set Tier 1
         end
@@ -73,13 +75,12 @@ function DetermineSkillbook(stat) --  Determine the school and tier of blank ski
         end
     end
 
-    if school == "WarriorRogueRanger" then
+    if school == "WarriorRogueRanger" then -- Nomatch then revert to tier 1
         tier = "Blank_A" -- As there is no tier 2 for Generic Blank Skillbooks reset tier to 1
     end
 
     return "BOOK_Skill_" .. school .. "_" .. tier --  Return Skillbook
 end
-
 
 --  ====
 --  VARS

@@ -7,7 +7,7 @@
 function ValidString(str)
     if type(str) ~= 'string' then return false end
     if str == "" or str == "{}" or str == "[]" then return false end
-    if str == "00000000-0000-0000-0000-000000000000" or "NULL_00000000-0000-0000-0000-000000000000" then return false end
+    if str == "00000000-0000-0000-0000-000000000000" or str == "NULL_00000000-0000-0000-0000-000000000000" then return false end
     return true
 end
 

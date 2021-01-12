@@ -28,7 +28,7 @@ function Spairs(t, order)
     local keys = {}
     if type(order) == 'string' then order = string.lower(order) end
 
-    for k, _ in pairs(t) do keys[#keys + 1] = k end
+    for k, _ in pairs(t) do if type(k) == 'number' then keys[#keys + 1] = k end end
     if order == "ascending" then table.sort(keys, function(a, b) return tonumber(a) < tonumber(b) end)
     elseif order == "descending" then table.sort(keys, function(a, b) return tonumber(a) > tonumber(b) end)
     elseif type(order) == 'function' then table.sort(keys, function(a, b) return order(t, a, b) end)
@@ -69,13 +69,10 @@ end
 function Intersection(target, source)
     if type(target) ~= 'table' or type(source) ~= 'table' then return end
 
+    local res = {}
      for key, value in pairs(target) do
         if not IsValid(target[key]) or not IsValid(source[key]) then break end
-        if type(value) == "table" then
-            source[key] = Intersection(value, source[key])
-        elseif type(value) == "boolean" and source[key] == false then source[key] = false
-        elseif type(value) == "string" and not ValidString(value) then source[key] = source[key]
-        else source[key] = source[key] or value end
+        res[key] = source[key]
     end
-    return source
+    return res
 end

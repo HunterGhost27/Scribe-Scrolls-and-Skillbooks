@@ -1,45 +1,22 @@
---  ======== AUX FUNCTIONS  ==========
+--  ========  AUX FUNCTIONS  =========
 Ext.Require("Functions/Auxiliary.lua")
 --  ==================================
 
---  ===============
---  MOD INFORMATION
---  ===============
+--  ====================
+--  DEFAULT MOD-SETTINGS
+--  ====================
 
-local modInfoTable = {
-    ["Author"] = MODINFO.Author,
-    ["Name"] = MODINFO.Name,
-    ["UUID"] = MODINFO.UUID,
-    ["Version"] = MODINFO.Version,
-    ["PublishedVersion"] = MODINFO.PublishVersion,
-    ["ModVersion"] = "0.0.0.0",
-    ["ModSettings"] = {
-        ["LegacyCompatibilityMode"] = false,
-        ["RecipeGeneration"] = true
-    }
-}
+Settings:Write({
+    ['LegacyCompatibilityMode'] = false,
+    ['RecipeGeneration'] = true
+})
 
-CENTRAL = LoadFile("S7Central.json") or {} --  Holds Global Settings and Information
-if CENTRAL[IDENTIFIER] == nil then CENTRAL[IDENTIFIER] = Rematerialize(modInfoTable) end
+--  ====
+--  VARS
+--  ====
 
---  =========  UPDATER  =========
-Ext.Require("Shared/Updater.lua")
---  =============================
-
---- Initialize CENTRAL
----@param ref table Reference table
----@param tar table Target table
-local function initCENTRAL(ref, tar)
-    for field, value in pairs(ref) do
-        if type(value) == 'table' then initCENTRAL(value, tar[field]) end
-        if MODINFO[field] then tar[field] = Rematerialize(MODINFO[field])
-        else if not tar[field] then tar[field] = Rematerialize(value) end end
-    end
-end
-
-initCENTRAL(modInfoTable, CENTRAL[IDENTIFIER])
-CENTRAL[IDENTIFIER]["ModVersion"] = ParseVersion(MODINFO.Version, "string")
-SaveFile("S7Central.json", CENTRAL)
+TotalCount = 0 -- Variable to track the number of recipes created.
+InkpotNQuillTemplate = "7c9e8ca5-de93-4e43-be83-2cb6a9022c2f"
 
 --  ================================
 --  DETERMINE APPROPRIATE SKILLBOOK
@@ -81,10 +58,3 @@ function DetermineSkillbook(stat)
 
     return "BOOK_Skill_" .. school .. "_" .. tier --  Return Skillbook
 end
-
---  ====
---  VARS
---  ====
-
-TotalCount = 0 -- Variable to track the number of recipes created.
-InkpotNQuillTemplate = "7c9e8ca5-de93-4e43-be83-2cb6a9022c2f"

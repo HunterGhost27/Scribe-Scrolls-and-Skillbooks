@@ -13,8 +13,10 @@ CENTRAL[IDENTIFIER] = {
 }
 
 function CENTRAL:Load()
-    self = Integrate(self, LoadFile('S7Central.json'))
+    local file = LoadFile('S7Central.json') or {}
+    self = Integrate(self, file)
     Settings:Update(self[IDENTIFIER].ModSettings)
+    return self
 end
 
 function CENTRAL:Sync()

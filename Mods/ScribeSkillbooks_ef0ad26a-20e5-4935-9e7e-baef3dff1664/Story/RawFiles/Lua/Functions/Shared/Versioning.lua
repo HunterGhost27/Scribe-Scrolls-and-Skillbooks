@@ -20,7 +20,7 @@ function Version:Parse(version)
 
     if type(version) == "string" then
         if string.gmatch(version, "[^.]+") ~= nil then
-            for v in string.gmatch(version, "[^.]+") do versionTable[#versionTable + 1] = v end
+            for v in string.gmatch(version, "[^.]+") do versionTable[#versionTable + 1] = tonumber(v) end
         else
             version = math.floor(tonumber(version))
             Version:Parse(version)

@@ -2,7 +2,7 @@
 --  DEBUG MODE
 --  ==========
 
-local function AddResources()
+local function DebugMode()
     local host = Osi.CharacterGetHostCharacter()
     Osi.ItemTemplateAddTo(Template.LOOT_Ink_Pot_A_Quill_A, host, 1, 1)
     Osi.ItemTemplateAddTo(Template.BOOK_Paper_Sheet_A, host, 50, 1)
@@ -11,8 +11,8 @@ local function AddResources()
 end
 
 ConsoleCommander:Register({
-    ['Name'] = 'AddResources',
+    ['Name'] = 'DebugMode',
     ['Description'] = "Adds an assortment of debug-items",
-    ['Action'] = AddResources,
+    ['Action'] = DebugMode,
     ['Context'] = 'Server'
 })

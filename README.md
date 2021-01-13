@@ -1,4 +1,4 @@
-# **Scribe Scrolls and Skillbooks**
+# Scribe Scrolls and Skillbooks
 
 ## Divinity: Original Sin 2 - Definitive Edition
 
@@ -17,7 +17,7 @@ The mod lets you scribe copies of _scrolls_ and _skill-books_ in your inventory 
 
 ## ⚠ IMPORTANT ⚠
 
-The mod has been recently updated ~~rewritten~~ to use the script-extender. This enables the mod to dynamically generate scribing recipes for vanilla and modded scrolls-&-skillbooks. Unfortunately there was no easy way to maintain compatibility with existing saves. As such using the updated version can cause issues for existing playthroughs. Unfortunately again, steam has probably updated your mod already. For anyone who has a playthrough in session: you should enable the `legacyCompatibilityMode` in `Osiris Data/S7Central.json`. You only need to do this if you wish to continue a playthrough you started with this mod's previous version. Any new-games should have it turned off. I apologize for the inconvinence caused.
+The mod has been recently updated ~~rewritten~~ to use the script-extender. This enables the mod to dynamically generate scribing recipes for vanilla and modded scrolls-&-skillbooks. Unfortunately there was no easy way to maintain compatibility with existing saves. As such using the updated version can cause issues for existing playthroughs. Unfortunately again, steam has probably updated your mod already. For anyone who has a playthrough in session: you should enable the `legacyCompatibilityMode` in `Osiris Data/S7Central.json`. You only need to do this if you wish to continue a playthrough you started with this mod's previous version. Any new-games should have it turned off. I apologize for the inconvinence caused. The mod might work as in `legacyMode` if you don't have the script-extender. 
 
 ## About the Mod
 
@@ -25,14 +25,14 @@ The mod has been recently updated ~~rewritten~~ to use the script-extender. This
 
 The mod allows you to use **Inkpots-&-Quills** to _copy_ any _skill-book_ on a _blank skill-book_ of the corresponding type and tier. So you can preserve the knowledge and share it among your party members before you inevitably devour it. or you could just sell the copies for profits.
 
+Blank Skillbook Stuff
+
 To copy scrolls you also need the corresponding **Elemental-Essence** (Air Essence, Shadow Essence, Tormented Soul etc.) in addition to the _Original Scroll, Inkpots-and-Quills_ and a _Sheet of paper_. This puts some limitation on how many scrolls you can scribe, without having to pray to RNGesus for the crafting ingredients. Essences are a finite but readily available resource.
 
 **Note**: You don't need chicken-claws, nails or large-antlers etc. to scribe a scroll, like you would for crafting them, you just need the Essence. _Source Skills require Source-Orbs instead of Essences_. Scribing a scroll or skill-book will not consume the original, this mod wouldn't be much of an upgrade otherwise.
 
 ### Recipes
 
-* **Leather Cover** + **Needle and Thread** + **Sheet of Paper** X 3 = **Blank Skillbook**.
-    _(Used for Warfare, Huntsman and Scoundrel Skills; While making this mod I realized that there were no Blank Skillbooks for them, so I had to make a new one. This book also works for higher-tier skills. Also use Leather scraps instead of Leather cover if you don't use the Crafter-Kit Giftbag.)_
 * **Cutting Tool** + **Feather** = **Quill**
 * **Quill** + **Inkpot** = **Inkpot-&-Quill** (Shocking, I know)
 * **Original Scroll** + **Inkpot-&-Quill** + **Blank Paper Sheet** + **Corresponding Essence/SourceOrb** = **Original Scroll** + **New Scroll**

@@ -12,6 +12,7 @@
 ### REMOVED
 
 * _Removed_ `ItemCombinator`.
+* _Removed_ BlankSkillbook recipe. Will integrate into treasure-tables.
 
 ## [1.1.0.0] --- 27th November 2020 --- **_S7 CENTRALIZE_**
 

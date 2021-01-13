@@ -28,16 +28,17 @@ end
 --  SCRIBER
 --  =======
 
+--  list of stats to ignore
+local ScribeException = {
+    ["SKILLBOOK_AbilityPoint"] = true,
+    ["SKILLBOOK_StatPoint"] = true,
+    ["BOOK_Skill_WarriorRogueRanger_Blank_A"] = true,
+}
+
 ---Generates Skillbook Scribing Recipes
 local function RecipeGeneratorSkillbooks()
     Stringer:SetHeader("Scribing Skillbook Recipes")
     local objects = Ext.GetStatEntries("Object") -- Get all Object stat-entries
-
-    --  list of stats to ignore
-    local ScribeException = {
-        ["SKILLBOOK_AbilityPoint"] = true,
-        ["SKILLBOOK_StatPoint"] = true
-    }
 
     local count = 0
     for _, scribable in pairs(objects) do
@@ -116,11 +117,19 @@ local function RecipeGeneratorScrolls()
     local count = 0
     for _, scribable in pairs(scrolls) do
         if string.match(scribable, 'BOOK_Paper_Sheet_A') then
+            if ScribeException[scribable] then break end -- Exit if stat is in ScribeException
             local Combo = ItemCombination:New(Ext.GetItemCombo(scribable))
             local scroll = Combo.Results[1].Results[1].Result
 
             --  CREATE INGREDIENTS
             --  ==================
+
+            local target = 2
+            for idx, tbl in pairs(Combo.Ingredients) do
+                if string.match(tbl.Object, "Essence") or string.match(tbl.Object, "Source") or string.match(tbl.Object, "Tormented") then
+                    target = idx
+                end
+            end
 
             local ingredientTable = {
                 [1] = {
@@ -129,7 +138,7 @@ local function RecipeGeneratorScrolls()
                     ["Object"] = scroll, -- Original Scroll
                     ["Transform"] = "None"
                 },
-                [2] = Combo.Ingredients[2], -- Elemental Essense
+                [2] = Combo.Ingredients[target], -- Elemental Essense
                 [3] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",
@@ -170,7 +179,7 @@ local function RecipeGeneratorScrolls()
             --  UPDATE ITEM COMBO
             --  =================
 
-            -- Ext.UpdateItemCombo(Combo)
+            Ext.UpdateItemCombo(Combo)
             Stringer:Add("Scribing --> " .. Combo.Name .. " for " .. scroll)
             count = count + 1
         end

@@ -1,24 +1,26 @@
 ----------------------------------------------------------------
 --==============================================================
-MODINFO = Ext.GetModInfo('ef0ad26a-20e5-4935-9e7e-baef3dff1664')
+
 IDENTIFIER = 'S7_Scribe'
+
+---@class MODINFO: ModInfo
+---@field ModVersion string
+---@field ModSettings table
+MODINFO = Ext.GetModInfo('ef0ad26a-20e5-4935-9e7e-baef3dff1664')
+
+DefaultSettings = {
+    ['LegacyCompatibilityMode'] = false,
+    ['RecipeGeneration'] = true
+}
+
 PersistentVars = {}
---==============================================================
-----------------------------------------------------------------
 
 --  ========  AUX FUNCTIONS  =========
 Ext.Require("Functions/Auxiliary.lua")
 --  ==================================
 
---  ====================
---  DEFAULT MOD-SETTINGS
---  ====================
-
-Settings:Write({
-    ['LegacyCompatibilityMode'] = false,
-    ['RecipeGeneration'] = true
-})
-CENTRAL:ReSync()
+--==============================================================
+----------------------------------------------------------------
 
 --  ====
 --  VARS

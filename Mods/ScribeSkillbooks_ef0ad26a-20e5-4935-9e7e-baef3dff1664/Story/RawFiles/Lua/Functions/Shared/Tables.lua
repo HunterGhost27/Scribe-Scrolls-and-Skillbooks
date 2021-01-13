@@ -57,22 +57,3 @@ function Destructure(tar, t)
     end
     return table.unpack(temp)
 end
-
---  ============
---  INTERSECTION
---  ============
-
----Returns an Intersection of the two sets
----@param target table
----@param source table
----@return table
-function Intersection(target, source)
-    if type(target) ~= 'table' or type(source) ~= 'table' then return end
-
-    local res = {}
-     for key, value in pairs(target) do
-        if not IsValid(target[key]) or not IsValid(source[key]) then break end
-        res[key] = source[key]
-    end
-    return res
-end

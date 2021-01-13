@@ -27,7 +27,10 @@ Ext.Require("Functions/Auxiliary.lua")
 --  ====
 
 TotalCount = 0 -- Variable to track the number of recipes created.
-InkpotNQuillTemplate = "7c9e8ca5-de93-4e43-be83-2cb6a9022c2f"
+Template = {
+    ['LOOT_Ink_Pot_A_Quill_A'] = "7c9e8ca5-de93-4e43-be83-2cb6a9022c2f",
+    ['BOOK_Paper_Sheet_A'] = "f0872b5d-ee7a-43f9-a63e-e3200abdb1a3",
+}
 
 --  ================================
 --  DETERMINE APPROPRIATE SKILLBOOK

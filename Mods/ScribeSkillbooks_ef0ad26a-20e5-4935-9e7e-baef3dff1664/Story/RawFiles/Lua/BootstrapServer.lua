@@ -3,4 +3,5 @@
 --  =======
 
 Ext.Require("Auxiliary.lua")
-if not CENTRAL[IDENTIFIER]["ModSettings"]["RecipeGeneration"] then Ext.Require("Server/ItemCombinator.lua") end
+if not MODINFO.ModSettings["RecipeGeneration"] then Ext.Require("Server/ItemCombinator.lua") end
+if Ext.IsDeveloperMode() then Ext.Require('Server/Debug.lua') end

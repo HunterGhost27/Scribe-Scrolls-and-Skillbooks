@@ -26,7 +26,7 @@ local function ItemCombinator(...)
 
     if not IsValid(statsID) then return end
     if Ext.GetStat(statsID).Using == "_Skillbooks" then
-        if item2.RootTemplate.Id ~= InkpotNQuillTemplate then return end
+        if item2.RootTemplate.Id ~= Template['LOOT_Ink_Pot_A_Quill_A'] then return end
         Osi.ItemTemplateRemoveFrom(itm3, char, 1)
         Osi.ItemTemplateAddTo(itm1, char, 1, 1)
 

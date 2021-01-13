@@ -2,6 +2,17 @@
 
 ----------
 
+## [1.2.0.0] --- 13th January 2020 --- **_Luaification_**
+
+### CHANGED
+
+* _Complete_ Luaification.
+* _Fixed_ Scroll Scribing.
+
+### REMOVED
+
+* _Removed_ `ItemCombinator`.
+
 ## [1.1.0.0] --- 27th November 2020 --- **_S7 CENTRALIZE_**
 
 ### NEW

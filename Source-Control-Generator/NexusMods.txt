@@ -1,58 +1,48 @@
-[heading][b]Scribe Scrolls and Skillbooks[/b][/heading]
-[heading]Divinity: Original Sin 2 - Definitive Edition[/heading]
+[heading]Declutter Skill-Panel[/heading]
+[heading]Divinity Original Sin 2: Definitive Edition[/heading]
 [line]
-The mod lets you scribe copies of [i]scrolls[/i] and [i]skill-books[/i] in your inventory without having to re-craft them from scratch. If you hate waiting hours for traders to restock to find the right ingredients for your favourite scrolls; or maybe you just love roleplaying a scroll-mage that wants to mass-produce and build a monopoly by selling chicken-claw scrolls. If so, then this mod is for you.
+[b]Remove[/b] undesirable skills from your skill-panel. Are you playing with 15 class-mods that add several hundred new abilities? Do you find yourself repeatedly respeccing every hour trying to find the perfect build? You thought Flaming-Skin was super edgy but it turned out to be hot-garbage?, Not only were you scammed, it also has left a permanent mark in your spellbook to constantly remind you of your blunder?
+Chances are, your skill-panel is FUBAR and needs some [i]declutterin'[/i]. Well, I've got just what you need.
 
 [heading]Releases[/heading]
 [list]
-[*][x] [i][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2012742114]Steam Workshop[/url][/b][/i]
-[*][ ] ~~[i][b][url=about:///]Nexus[/url][/b][/i]~~
-[*][x] [i][b][url=https://github.com/Shresht7/Scribe-Scrolls-and-Skillbooks/releases]Github[/url][/b][/i]
+[*][i][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2049313850]Steam Workshop[/url][/b][/i]
+[*][i][b][url=https://github.com/HunterGhost27/Declutter-Skill-Panel]Github[/url][/b][/i]
 [/list]
 [heading]Requirements[/heading]
 [list]
-[*][b]NEW[/b] [i][b][url=https://github.com/Norbyte/ositools]Norbyte's script-extender[/url][/b][/i]
+[*][i][b][url=https://github.com/Norbyte/ositools]Norbyte's Script Extender[/url][/b][/i]
 [/list]
-[heading]⚠ IMPORTANT ⚠[/heading]
-The mod has been recently updated (~~rewritten~~) to use the script-extender. This enables the mod to dynamically generate scribing recipes for vanilla and modded scrolls-&amp;-skillbooks. Unfortunately there was no easy way to maintain compatibility with existing saves. As such using the updated version can and will cause issues for existing playthroughs. Unfortunately again, steam has probably updated your mod already. For anyone who has a playthrough in session: you should download the older version from the mod's [url=https://github.com/Shresht7/Scribe-Scrolls-and-Skillbooks]github repository[/url]. Download the [code].pak[/code] from the [url=https://github.com/Shresht7/Scribe-Scrolls-and-Skillbooks/releases]releases[/url] section and place it in the Mods folder ([code]..Documents\Larian Studios\Divinity Original Sin 2 Definitive Edition\Mods\[/code]). You only need to do this if you wish to continue a playthrough you started with this mod's previous version. I apologize for the inconvinence caused.
-
-[heading]About the Mod[/heading]
-[heading]Background[/heading]
-The most fun I had playing DOS2 was with an [i]Ambidextrous, Five-Star-Dining, Staff-Slinging Battlemage[/i]. The build revolved around the use of [b]consumables[/b] and literally scaled off of gold (and crafting ingredients). After a complete playthrough, I felt that scroll-crafting in DOS2 was implemented more like a bonus feature and wasn't really meant to be an integral part of builds. The crafting system, in general, felt like an afterthought. I made this mod to make scrolls more accessible, so much so, you can make builds around it.
-
 [heading]Features[/heading]
-The mod allows you to use [b]Inkpots-&amp;-Quills[/b] to [i]copy[/i] any [i]skill-book[/i] on a [i]blank skill-book[/i] of the corresponding type and tier. So you can preserve the knowledge and share it among your party members before you inevitably devour it. or you could just sell the copies for profits. Why are skill books consumable you ask? - I honestly don't know; balance reasons probably.
+The mod adds a unique artefact known as the [i][b]"Forgetinator"[/b][/i] that is able to selectively purge memories from the user. You can find it in one of the [i]torture-rooms[/i] in [b]Fort Joy Dungeons[/b]. It will also be added to your inventory automatically if you never picked it up, dropped it somewhere or have otherwise moved-on from Fort Joy.
 
-Scrolls aren't as easy to scribe however, for all I know, skill-books are just written instructions that the characters learn and have to perform themselves using their capabilities (magical or otherwise); Scrolls, on the other hand, contain the magic within them as they are accessible to anyone who reads them. Thus, to copy scrolls you also need the corresponding [b]Elemental-Essence[/b] (Air Essence, Shadow Essence, Tormented Soul etc.) in addition to the [i]Original Scroll, Inkpots-and-Quills[/i] and a [i]Sheet of paper[/i]. This puts some limitation on how many scrolls you can scribe, without having to pray to RNGesus for the crafting ingredients. Essences are a finite but readily available resource.
+How to use this mod:
 
-[b]Note[/b]: You don't need chicken-claws, nails or large-antlers etc. to scribe a scroll, like you would for crafting them, you just need the Essence. [i]Source Skills require Source-Orbs instead of Essences[/i]. Scribing a scroll or skill-book will not consume the original, this mod wouldn't be much of an upgrade otherwise.
+[list=1]
+[*][b]Save[/b] your game before you go purging any skills.
+[*]Open your [i]skill-panel[/i] (default: K) and hit [i]"Reset-All"[/i] or manually remove all memorized skills. (you can leave the ones you wish to remove memorized).
+[*]Memorize only the skills that you wish to [b]remove[/b] from the character. Double-check.
+[*][b]Use[/b] the Forgetinator from your inventory. BANG! Just fire and forget, literally.
+[*]Make sure you don't regret what you've done. Reload if you do.
+[/list]
+Works on mod-added skills too. Purge 'em ALL!!!
 
-[heading]Recipes[/heading]
+[heading]Alternate Fire-Mode[/heading]
+[i]Combine[/i] the [i]Forgetinator[/i] with [i]Tongs[/i] to toggle safety features. Once turned [b]off[/b], the Forgetinator will remove every skill that is [i]NOT on any of your skillbars(/hotbars)[/i]. This includes [i]innate skills[/i], skills granted by [i]items[/i] (All-In, Shield-Up, Purge), skills granted by [i]statuses[/i](Fly, Medusa-Head) etc. If it's not on your hotbar, its a GONER.
+
+[b]Exercise Extreme Caution[/b]: Removing something like [i]Source Vampirism[/i] or [i]Spirit Vision[/i] will probably brick your game. I'll advise you to [b]save[/b] your game before you remove skills and turn safeties ON again (by combining it with a Tong) after you're done.
+
+[b]NOTE[/b]: The mod only removes skills from the character. It does not prevent the character from re-learning those skills - i.e. if a mod adds skills using scripts, those skills will probably reappear the next time you load your save. Same with skills granted by items. The skills are removed from the character and not the items itself, they'll be added to your character again when you next equip them or reload the save with them equipped.
+
+[heading]UI-Components-Library Integration[/heading]
+If you have the [b][url=https://github.com/HunterGhost27/UI-Components-Library]UI-Components-Library[/url][/b], you can toggle fire-modes by simply [i]right-clicking[/i] and selecting the [i]context-menu option[/i].
+
+[heading]Thanks and Credit[/heading]
 [list]
-[*][b]Leather Cover[/b] + [b]Needle and Thread[/b] + [b]Sheet of Paper[/b] X 3 = [b]Blank Skillbook[/b].
-[i](Used for Warfare, Huntsman and Scoundrel Skills; While making this mod I realized that there were no Blank Skillbooks for them, so I had to make a new one. This book also works for higher-tier skills. Also use Leather scraps instead of Leather cover if you don't use the Crafter-Kit Giftbag.)[/i]
-[*][b]Cutting Tool[/b] + [b]Feather[/b] = [b]Quill[/b]
-[*][b]Quill[/b] + [b]Inkpot[/b] = [b]Inkpot-&amp;-Quill[/b] (Shocking, I know)
-[*][b]Original Scroll[/b] + [b]Inkpot-&amp;-Quill[/b] + [b]Blank Paper Sheet[/b] + [b]Corresponding Essence/SourceOrb[/b] = [b]Original Scroll[/b] + [b]New Scroll[/b]
-[*][b]Original Skillbook[/b] + [b]Inkpot-&amp;-Quill[/b] + [b]Corresponding Blank Skill Book[/b] = [b]Original Skillbook[/b] + [b]New Skillbook[/b]
-[/list]
-[heading]Highly-Anticipated-Questions (HAQs)[/heading]
-[list]
-[*][b]Q: Does this work with modded skill books and scrolls?[/b]
-[*][i][b]A[/b][/i]: ~~I'm sorry, No. The mod just contains recipes for base-game skills and scrolls because I had to create the recipes for each scroll and skill by hand. This was pretty much my first mod and I don't know of a better way to make crafting recipes. So you can't scribe modded skill books and scrolls unless I or someone else makes these crafting recipes for them. I might be willing to do it if I find the time and motivation; and the permission of the respective mod-authors.~~
-[*][b]YES![/b] Thanks to amazing script-extender the mod can now dynamically generate scribing recipes for modded scrolls and skillbooks.
-[/list]
-[line]
-[heading]My Other Mods[/heading]
-[list]
-[*][i][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2049313850]Declutter Skill-Panel[/url][/b][/i] - Selectively remove skills from your characters.
-[*][i][b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2028696492]Channel Source[/url][/b][/i] - Regenerate source in and out of combat.
-[/list]
-[heading]Thanks and Credits[/heading]
-[list]
-[*][b][url=http://store.steampowered.com/app/435150/Divinity_Original_Sin_2/]Divinity: Original Sin 2[/url][/b], a game by [b][url=http://larian.com/]Larian Studios[/url][/b].
-[*][b]LaughingLeader[/b] for the [b][url=https://github.com/LaughingLeader/SourceControlGenerator]Source Control Generator[/url][/b].
-[*][b]Norbyte[/b] for the [b][url=https://github.com/Norbyte/ositools]Script-Extender[/url][/b].
-[*][b]Sebastian Lenz[/b] for the [b][url=https://marketplace.visualstudio.com/items?itemName=sebastian-lenz.divinity-vscode]VSCode extension[/url][/b].
+[*][url=http://store.steampowered.com/app/435150/Divinity_Original_Sin_2/]Divinity: Original Sin 2[/url], a game by [url=http://larian.com/]Larian Studios[/url]
+[*][b]Norbyte[/b], for his script-extender and for helping me with my first story-script. Absolute Champion.
+[*][b]LaughingLeader[/b] for the [b][url=https://github.com/LaughingLeader/SourceControlGenerator]Source Control Generator[/url][/b]
+[*][b]Sebastian Lenz[/b] and [b]LaughingLeader[/b] for the [b][url=https://marketplace.visualstudio.com/items?itemName=sebastian-lenz.divinity-vscode]VSCode extension[/url][/b]
+[*]Pencil Icon by Delapouite at [url=https://game-icons.net/]Game-Icons[/url]
 [/list]
 

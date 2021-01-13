@@ -4,12 +4,16 @@
 
 UserInformation = {
     ['Host'] = {},
-    ['Clients'] = {}
+    ['Clients'] = {},
+    ['isProcessing'] = false
 }
 
 ---ReSynchronizes UserInformation Object
 function UserInformation:ReSync()
     if Ext.IsClient() and not Ext.OsirisIsCallable() then Debug:Warn("Cannot ReSync UserInformation. Osiris Inaccessible") return end
+    if self.isProcessing then return end
+
+    self.isProcessing = true
 
     --  HOST CHARACTER
     --  ==============
@@ -39,6 +43,8 @@ function UserInformation:ReSync()
         _, self.Clients.profileID.DisplayName = Osi.CharacterGetDisplayName(self.Clients.profileID.CurrentCharacter)
         Ext.PostMessageToUser(user, 'S7_UserInformationSync', Ext.JsonStringify(self.Clients.profileID))
     end
+
+    self.isProcessing = false
 end
 
 Ext.RegisterNetListener('S7_UserInformationSync', function (channel, payload)

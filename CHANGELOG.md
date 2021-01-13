@@ -4,6 +4,10 @@
 
 ## [1.2.0.0] --- 13th January 2020 --- **_Luaification_**
 
+### NEW
+
+* _Added_ *BlankSkillbooks* to treasure-tables.
+
 ### CHANGED
 
 * _Complete_ Luaification.

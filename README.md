@@ -25,7 +25,7 @@ The mod has been recently updated (/rewritten) to use the script-extender. This 
 
 The mod allows you to use **Inkpots-&-Quills** to _copy_ any _skill-book_ on a _blank skill-book_ of the corresponding type and tier. So you can preserve the knowledge and share it among your party members before you inevitably devour it. or you could just sell the copies for profits.
 
-Warrior, Rogue and Huntsman schools don't have blank-skillbooks by default, the mod add a generic **Blank-Skillbook** for them. It can be bought from traders like any other blank skillbook.
+Adds a generic **BlankSkillbook** for Warfare, Huntsman and Rogue skills. ( While making this mod I realized that there were no Blank Skillbooks for them, so I had to make a new one. This book also works for higher-tier skills.)
 
 To copy scrolls you also need the corresponding **Elemental-Essence** (Air Essence, Shadow Essence, Tormented Soul etc.) in addition to the _Original Scroll, Inkpots-and-Quills_ and a _Sheet of paper_. This puts some limitation on how many scrolls you can scribe, without having to pray to RNGesus for the crafting ingredients. Essences are a finite but readily available resource.
 

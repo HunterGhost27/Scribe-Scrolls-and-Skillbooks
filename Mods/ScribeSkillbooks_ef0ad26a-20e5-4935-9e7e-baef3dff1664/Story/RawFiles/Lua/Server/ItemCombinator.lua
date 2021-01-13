@@ -2,7 +2,7 @@
 --  ITEM COMBINATOR
 --  ===============
 
-local function ItemCombinator(...)
+local function ItemCombinator(char, itm1, itm2, itm3, itm4, itm5, requestID)
     --[[
     Osiris Listener for
     event ItemTemplateCombinedWithItemTemplate( (STRING)_FirstItemTemplate,
@@ -14,26 +14,21 @@ local function ItemCombinator(...)
                                                 (ITEMGUID)_NewItem)
 --]]
 
-    local args = {...}
-    local char, itm1, itm2, itm3, itm4, itm5, requestID = table.unpack(args)
-    char, itm1, itm2, itm3, itm4, itm5 = ExtractGUID(char), ExtractGUID(itm1), ExtractGUID(itm2), ExtractGUID(itm3), ExtractGUID(itm4), ExtractGUID(itm5)
-    local character, item1, item2, item3, item4, item5 = Ext.GetCharacter(char), Ext.GetItem(itm1), Ext.GetItem(itm2), Ext.GetItem(itm3), Ext.GetItem(itm4), Ext.GetItem(itm5)
+    Ext.Print(char, itm1, itm2, itm3, itm4, itm5, requestID)
 
-    Debug:FWarn({char, itm1, itm2, itm3, itm4, itm5})
+    local function extractGUIDIfValid(x) if ValidString(x) then return ExtractGUID(x) else return nil end end
 
-    local statsID = item1.StatsId
-    local inventory = character:GetInventoryItems()
+    local combinator = {
+        ['char'] = extractGUIDIfValid(char),
+        ['item1'] = extractGUIDIfValid(itm1),
+        ['item2'] = extractGUIDIfValid(itm2),
+        ['item3'] = extractGUIDIfValid(itm3),
+        ['item4'] = extractGUIDIfValid(itm4),
+        ['item5'] = extractGUIDIfValid(itm5),
+        ['requestID'] = requestID
+    }
 
-    if not IsValid(statsID) then return end
-    if Ext.GetStat(statsID).Using == "_Skillbooks" then
-        if item2.RootTemplate.Id ~= Template['LOOT_Ink_Pot_A_Quill_A'] then return end
-        Osi.ItemTemplateRemoveFrom(itm3, char, 1)
-        Osi.ItemTemplateAddTo(itm1, char, 1, 1)
-
-    elseif Ext.GetStat(statsID).Using == "_Scrolls" then
-        Osi.ItemTemplateRemoveFrom(itm3, char, 1)
-        Osi.ItemTemplateAddTo(itm1, char, 1, 1)
-    end
+    Ext.Print(Ext.JsonStringify(combinator))
 end
 
 --  =====================================================================

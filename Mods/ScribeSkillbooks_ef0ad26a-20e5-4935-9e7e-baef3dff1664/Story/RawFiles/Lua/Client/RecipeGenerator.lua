@@ -138,7 +138,7 @@ local function RecipeGeneratorScrolls()
                     ["Object"] = scroll, -- Original Scroll
                     ["Transform"] = "None"
                 },
-                [2] = Combo.Ingredients[target], -- Elemental Essense
+                [2] = Combo.Ingredients[target], -- Elemental Essence
                 [3] = {
                     ["IngredientType"] = "Object",
                     ["ItemRarity"] = "Sentinel",

@@ -40,7 +40,7 @@ Scrolls aren't as easy to scribe however, for all I know, skill-books are just w
     _(Used for Warfare, Huntsman and Scoundrel Skills; While making this mod I realized that there were no Blank Skillbooks for them, so I had to make a new one. This book also works for higher-tier skills. Also use Leather scraps instead of Leather cover if you don't use the Crafter-Kit Giftbag.)_
 * **Cutting Tool** + **Feather** = **Quill**
 * **Quill** + **Inkpot** = **Inkpot-&-Quill** (Shocking, I know)
-* **Original Scroll** + **Inkpot-&-Quill** + **Blank Paper Sheet** + **Corresponding Essense/SourceOrb** = **Original Scroll** + **New Scroll**
+* **Original Scroll** + **Inkpot-&-Quill** + **Blank Paper Sheet** + **Corresponding Essence/SourceOrb** = **Original Scroll** + **New Scroll**
 * **Original Skillbook** + **Inkpot-&-Quill** + **Corresponding Blank Skill Book** = **Original Skillbook** + **New Skillbook**
 
 ## Highly-Anticipated-Questions (HAQs)

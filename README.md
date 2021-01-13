@@ -17,7 +17,7 @@ The mod lets you scribe copies of _scrolls_ and _skill-books_ in your inventory 
 
 ## ⚠ IMPORTANT ⚠
 
-The mod has been recently updated ~~rewritten~~ to use the script-extender. This enables the mod to dynamically generate scribing recipes for vanilla and modded scrolls-&-skillbooks. Unfortunately there was no easy way to maintain compatibility with existing saves. As such using the updated version can cause issues for existing playthroughs. Unfortunately again, steam has probably updated your mod already. For anyone who has a playthrough in session: you should enable the `legacyCompatibilityMode` in `Osiris Data/S7Central.json`. You only need to do this if you wish to continue a playthrough you started with this mod's previous version. Any new-games should have it turned off. I apologize for the inconvinence caused. The mod might work as in `legacyMode` if you don't have the script-extender. 
+The mod has been recently updated (/rewritten) to use the script-extender. This enables the mod to dynamically generate scribing recipes for vanilla and modded scrolls-&-skillbooks. Unfortunately there was no easy way to maintain compatibility with existing saves. As such using the updated version can cause issues for existing playthroughs. If the update causes issues, you can enable the `legacyCompatibilityMode` in `Osiris Data/S7Central.json`. You only need to do this if you wish to continue a playthrough you started with this mod's previous version and are experiencing problems. Any new-games should have it turned off. I apologize for the inconvinence caused. The mod might work as in `legacyMode` if you don't have the script-extender. 
 
 ## About the Mod
 
@@ -25,7 +25,7 @@ The mod has been recently updated ~~rewritten~~ to use the script-extender. This
 
 The mod allows you to use **Inkpots-&-Quills** to _copy_ any _skill-book_ on a _blank skill-book_ of the corresponding type and tier. So you can preserve the knowledge and share it among your party members before you inevitably devour it. or you could just sell the copies for profits.
 
-Blank Skillbook Stuff
+Warrior, Rogue and Huntsman schools don't have blank-skillbooks by default, the mod add a generic **Blank-Skillbook** for them. It can be bought from traders like any other blank skillbook.
 
 To copy scrolls you also need the corresponding **Elemental-Essence** (Air Essence, Shadow Essence, Tormented Soul etc.) in addition to the _Original Scroll, Inkpots-and-Quills_ and a _Sheet of paper_. This puts some limitation on how many scrolls you can scribe, without having to pray to RNGesus for the crafting ingredients. Essences are a finite but readily available resource.
 
@@ -42,7 +42,7 @@ To copy scrolls you also need the corresponding **Elemental-Essence** (Air Essen
 
 * **Q: Does this work with modded skill books and scrolls?**
 * ***A***: ~~I'm sorry, No. The mod just contains recipes for base-game skills and scrolls because I had to create the recipes for each scroll and skill by hand. This was pretty much my first mod and I don't know of a better way to make crafting recipes. So you can't scribe modded skill books and scrolls unless I or someone else makes these crafting recipes for them. I might be willing to do it if I find the time and motivation; and the permission of the respective mod-authors.~~
-* **YES!** Thanks to amazing script-extender the mod can now dynamically generate scribing recipes for modded scrolls and skillbooks.
+* **YES!** Thanks to amazing script-extender the mod can now dynamically generate scribing recipes for modded scrolls and skillbooks. T&C apply.
 
 ----------
 

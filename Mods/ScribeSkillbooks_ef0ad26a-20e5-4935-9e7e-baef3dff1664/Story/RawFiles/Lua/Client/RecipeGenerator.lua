@@ -37,7 +37,7 @@ local ScribeException = {
 
 ---Generates Skillbook Scribing Recipes
 local function RecipeGeneratorSkillbooks()
-    Stringer:SetHeader("Scribing Skillbook Recipes")
+    Write:SetHeader("Scribing Skillbook Recipes")
     local objects = Ext.GetStatEntries("Object") -- Get all Object stat-entries
 
     local count = 0
@@ -100,18 +100,18 @@ local function RecipeGeneratorSkillbooks()
             --  =================
 
             Ext.UpdateItemCombo(Combo)
-            Stringer:Add("Scribing --> " .. Combo.Name .. " for " .. scribable)
+            Write:NewLine("Scribing --> " .. Combo.Name .. " for " .. scribable)
             count = count + 1
         end
     end
-    Stringer:LineBreak("_")
-    Stringer:Add("Scribed " .. count .. " Skillbooks!")
-    Debug:FPrint(Stringer:Build())
+    Write:LineBreak("_")
+    Write:NewLine("Scribed " .. count .. " Skillbooks!")
+    Debug:FPrint(Write:Display())
     TotalCount = TotalCount + count
 end
 
 local function RecipeGeneratorScrolls()
-    Stringer:SetHeader("Scribing Scroll Recipes")
+    Write:SetHeader("Scribing Scroll Recipes")
     local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombination entries.
 
     local count = 0
@@ -180,13 +180,13 @@ local function RecipeGeneratorScrolls()
             --  =================
 
             Ext.UpdateItemCombo(Combo)
-            Stringer:Add("Scribing --> " .. Combo.Name .. " for " .. scroll)
+            Write:NewLine("Scribing --> " .. Combo.Name .. " for " .. scroll)
             count = count + 1
         end
     end
-    Stringer:LineBreak("_")
-    Stringer:Add("Scribed " .. count .. " Scrolls!")
-    Debug:FPrint(Stringer:Build())
+    Write:LineBreak("_")
+    Write:NewLine("Scribed " .. count .. " Scrolls!")
+    Debug:FPrint(Write:Display())
     TotalCount = TotalCount + count
 
     Debug:HFPrint("Scribed a total of " .. TotalCount .. " Crafting-Recipes!", {['highlight'] = "="})

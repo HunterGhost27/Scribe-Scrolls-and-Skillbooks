@@ -8,10 +8,10 @@
 function IsValid(value)
     if type(value) == 'nil' then return false
     elseif type(value) == 'boolean' then return value
-    elseif type(value) == 'number' then if value == 0 then return false else return true end
+    elseif type(value) == 'number' then return value ~= 0
     elseif type(value) == 'string' then return ValidString(value)
+    elseif type(value) == 'table' then return ValidString(Ext.JsonStringify(Rematerialize(value)))
     elseif type(value) == 'function' or type(value) == 'thread' or type(value) == 'userdata' then return true
-    elseif type(value) == 'table' then if value == {} then return false else return true end
     else return value end
 end
 
@@ -20,15 +20,17 @@ end
 --  ============
 
 ---Disintegrate element into pieces
----@param element string|table
+---@param element string|number|table
 ---@param separator string String separator. Default: `" "`
 function Disintegrate(element, separator)
-    if type(element) ~= 'string' and type(element) ~= 'table' then return end
+    if type(element) ~= 'string' and type(element) ~= 'table' and type(element) ~= 'number' then return end
 
     local pieces = {}
-    local separator = separator or " "
+    local separator = ValidString(separator) and separator or " "
     if type(element) == 'table' then pieces = element end
     if type(element) == 'string' then for split in string.gmatch(element, "[^" .. separator .. "]+") do pieces[#pieces + 1] = split end end
+    if type(element) == 'number' then pieces = Map(table.pack(math.modf(element)), function (key, value) return key, tonumber(tostring(value):sub(0, 4)) end)
+    end
     return table.unpack(pieces)
 end
 
@@ -65,23 +67,39 @@ end
 ---@param config table Configuration table
 ---@return any element Rematerialized element
 function Rematerialize(element, config, clones)
-    config = Integrate({["metatables"] = false, ['nonstringifiable'] = false}, config)
-    clones = clones or {}
-    local clone = {}
+   config = Integrate({["metatables"] = false, ['deep'] = false}, config)
+   clones = clones or {}
+   local clone = {}
 
-    if type(element) == "table" then
-        if clones[element] then clone = clones[element]
-        else
-            clone = {}
-            clones[element] = clone
-            for key, value in next, element do clone[Rematerialize(key, clones)] = Rematerialize(value, clones) end
-            if config.metatables then setmetatable(clone, Rematerialize(getmetatable(element), clones)) end
-        end
-    else clone = element end
+   if type(element) == "table" then
+       if clones[element] then clone = clones[element]
+       else
+           clone = {}
+           clones[element] = clone
+           for key, value in next, element do clone[Rematerialize(key, config, clones)] = Rematerialize(value, config, clones) end
+           if config.metatables then setmetatable(clone, Rematerialize(getmetatable(element), config, clones)) end
+       end
+   else clone = element end
 
-    if type(element) == "function" or type(element) == "userdata" or type(element) == "thread" then
-        if config.nonstringifiable then clone = element else clone = nil end
+   if type(element) == "function" or type(element) == "userdata" or type(element) == "thread" then
+       if config.deep then clone = element else clone = nil end
+   end
+
+   return clone
+end
+
+--  ===========
+--  IS CALLABLE
+--  ===========
+
+---Checks if the element is callable like a function or functable
+---@param e any
+---@return boolean
+function IsCallable(e)
+    if type(e) == 'function' then return true end
+    if type(e) == 'table' then
+      local mt = getmetatable(e)
+      return type(mt) == 'table' and IsCallable(mt.__call)
     end
-
-    return clone
+    return false
 end

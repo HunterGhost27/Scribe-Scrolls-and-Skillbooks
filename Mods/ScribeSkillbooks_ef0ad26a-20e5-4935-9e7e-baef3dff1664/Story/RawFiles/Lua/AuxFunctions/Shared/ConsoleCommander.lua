@@ -11,19 +11,19 @@
 ---@field Context string Context: "Shared", "Server" or "Client"
 ---@field Description string Help-Messsage
 ---@field Params table<number, string> Parameters
----@field New function Creates new instance
 Command = {
-    ['Name'] = "",
-    ['Action'] = function() end,
-    ['Context'] = "Shared",
-    ['Description'] = "",
-    -- ['Params'] = {}
+    ['Name'] = '',
+    ['Action'] = '',
+    ['Context'] = 'Shared',
+    ['Description'] = '',
+    ['Params'] = {}
 }
 
 ---Instantiate new Command Object
 ---@param object Command
 ---@return Command
 function Command:New(object)
+    if not ValidInputTable(object, {'Name', 'Action'}) then return end
     local object = object or {}
     Integrate(self, object)
     return object
@@ -33,19 +33,20 @@ end
 ---@param CMD Command
 ---@return boolean
 local function isValidContext(CMD)
-    if CMD.Context == "Shared" or CMD.Context == Ext.IsServer() and "Server" or "Client" then return true
+    if CMD.Context == 'Shared' or CMD.Context == Ext.IsServer() and 'Server' or 'Client' then return true
     else return false end
 end
 
 --  CONSOLE COMMANDER
 --  =================
 
+---@class ConsoleCommander
 ConsoleCommander = {}
 
 ---Registers new Console-Command
 ---@param CMD Command
 function ConsoleCommander:Register(CMD)
-    if not ValidString(CMD.Name) then Debug:Error('Cannot register console-command. Invalid commandName'); return end
+    if not ValidInputTable(CMD, {'Name', 'Action'}) then return end
     self[CMD.Name] = Command:New(CMD)
 end
 
@@ -54,45 +55,43 @@ end
 
 ---Help-Message Console-Command
 ---@param target string Command-Name or ""
-function ConsoleCommanderHelp(target)
+local function ConsoleCommanderHelp(target)
     local target = target or ""
     local helpMsg = ""
 
     if ConsoleCommander[target] and isValidContext(ConsoleCommander[target]) then
-        Stringer:SetHeader(target .. ": " .. ConsoleCommander[target].Description)
-        if ConsoleCommander[target].Params then
+        Write:SetHeader(target .. ": " .. ConsoleCommander[target].Description)
+        if IsValid(ConsoleCommander[target].Params) then
             for key, value in ipairs(ConsoleCommander[target].Params) do
-                Stringer:Add("\t" .. "Parameter" .. key .. ": " .. value)
+                Write:NewLine("\t" .. "Parameter" .. key .. ": " .. value)
             end
         end
-        helpMsg = Stringer:Build()
+        helpMsg = Write:Display()
     else
-        for name, CMD in pairs(ConsoleCommander) do
-            if type(CMD) == 'table' and isValidContext(CMD) then
-                Stringer:Add("COMMAND: ".. name)
-                Stringer:Add("DESCRIPTION: " .. CMD.Description)
-                Stringer:LineBreak("-")
-            end
-        end
-        Stringer:Add("!S7_Forgetinator Help <CommandName> for more info")
-        helpMsg = Stringer:Build()
+        local helpTable = {}
+        for cmdName, value in pairs(Rematerialize(ConsoleCommander)) do helpTable[cmdName] = value.Description end
+
+        Write:SetHeader('COMMAND\t\t\tDESCRIPTION')
+        Write:Tabulate(helpTable)
+        Write:NewLine("!" .. IDENTIFIER .." Help <CommandName> for more info")
+        helpMsg = Write:Display()
     end
     Debug:FWarn(helpMsg)
 end
 
 ConsoleCommander:Register({
-    ['Name'] = "Help",
+    ['Name'] = 'Help',
     ['Action'] = ConsoleCommanderHelp,
-    ['Context'] = "Shared",
-    ['Description'] = "Displays a list of all console-commands",
-    ['Params'] = {[1] = "Target Command-Name"}
+    ['Context'] = 'Shared',
+    ['Description'] = 'Displays a list of all console-commands',
+    ['Params'] = {[1] = 'Target Command-Name'}
 })
 
 --  REGISTER CONSOLE-COMMANDER
 --  ==========================
 
 Ext.RegisterConsoleCommand(IDENTIFIER, function (cmd, command, ...)
-    if not ValidString(command) then Debug:FError('Invalid Command. Try !' .. IDENTIFIER .. ' Help'); return end
+    if not ValidString(command) then Debug:FError('Invalid Command. Try !' .. IDENTIFIER .. ' Help') return end
     if not ConsoleCommander[command] then command = "Help" end
     ConsoleCommander[command].Action(...)
 end)

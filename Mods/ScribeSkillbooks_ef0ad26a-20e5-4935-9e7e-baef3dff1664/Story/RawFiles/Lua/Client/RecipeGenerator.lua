@@ -41,8 +41,8 @@ local function RecipeGeneratorSkillbooks()
     local objects = Ext.GetStatEntries("Object") -- Get all Object stat-entries
 
     local count = 0
-    for _, scribable in pairs(objects) do
-        if ScribeException[scribable] then break end -- Exit if stat is in ScribeException
+    ForEach(objects, function(idx, scribable)
+        if ScribeException[scribable] then return end -- Exit if stat is in ScribeException
 
         local stat = Ext.GetStat(scribable)
         if stat and stat.Using == "_Skillbooks" then -- Stat's parent is a _Skillbooks
@@ -103,7 +103,7 @@ local function RecipeGeneratorSkillbooks()
             Write:NewLine("Scribing --> " .. Combo.Name .. " for " .. scribable)
             count = count + 1
         end
-    end
+    end)
     Write:LineBreak("_")
     Write:NewLine("Scribed " .. count .. " Skillbooks!")
     Debug:FPrint(Write:Display())
@@ -115,9 +115,9 @@ local function RecipeGeneratorScrolls()
     local scrolls = Ext.GetStatEntries("ItemCombination") --  Get ItemCombination entries.
 
     local count = 0
-    for _, scribable in pairs(scrolls) do
+    ForEach(scrolls, function(idx, scribable)
         if string.match(scribable, 'BOOK_Paper_Sheet_A') then
-            if ScribeException[scribable] then break end -- Exit if stat is in ScribeException
+            if ScribeException[scribable] then return end -- Exit if stat is in ScribeException
             local Combo = ItemCombination:New(Ext.GetItemCombo(scribable))
             local scroll = Combo.Results[1].Results[1].Result
 
@@ -183,7 +183,7 @@ local function RecipeGeneratorScrolls()
             Write:NewLine("Scribing --> " .. Combo.Name .. " for " .. scroll)
             count = count + 1
         end
-    end
+    end)
     Write:LineBreak("_")
     Write:NewLine("Scribed " .. count .. " Scrolls!")
     Debug:FPrint(Write:Display())

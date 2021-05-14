@@ -1,9 +1,8 @@
 {
-    "RequiredExtensionVersion": 53,
-    "ModTable": "S7_Scribe",
-    "FeatureFlags": [
-        "OsirisExtensions",
-        "Preprocessor",
-        "Lua"
-    ]
+  "RequiredExtensionVersion": 53,
+  "ModTable": "ScribeSkillbooks",
+  "FeatureFlags": [
+    "OsirisExtensions",
+    "Lua"
+  ]
 }

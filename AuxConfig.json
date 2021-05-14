@@ -1,0 +1,10 @@
+{
+  "ProjectName": "ScribeSkillbooks",
+  "ProjectUUID": "ef0ad26a-20e5-4935-9e7e-baef3dff1664",
+  "ScriptExtenderVersion": 53,
+  "SEFeatureFlags": [
+    "OsirisExtensions",
+    "Lua"
+  ],
+  "ProjectDirectory": "ScribeSkillbooks_ef0ad26a-20e5-4935-9e7e-baef3dff1664"
+}

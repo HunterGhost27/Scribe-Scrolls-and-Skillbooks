@@ -51,4 +51,3 @@ To copy scrolls you also need the corresponding **Elemental-Essence** (Air Essen
 * **[Divinity: Original Sin 2](http://store.steampowered.com/app/435150/Divinity_Original_Sin_2/)**, a game by **[Larian Studios](http://larian.com/)**.
 * **LaughingLeader** for the **[Source Control Generator](https://github.com/LaughingLeader/SourceControlGenerator)**.
 * **Norbyte** for the **[Script-Extender](https://github.com/Norbyte/ositools)**.
-* **Sebastian Lenz** and **LaughingLeader** for the **[VSCode extension](https://marketplace.visualstudio.com/items?itemName=sebastian-lenz.divinity-vscode)**.

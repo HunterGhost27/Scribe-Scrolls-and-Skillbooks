@@ -1,3 +1,7 @@
+local CRAFTER_KIT = '68a99fef-d125-4ed0-893f-bb6751e52c5e'
+
+if Ext.ModIsLoaded(CRAFTER_KIT) then return end
+
 Ext.RegisterListener("StatsLoaded", function ()
     Ext.UpdateItemCombo({
         ["AutoLevel"] = false,
